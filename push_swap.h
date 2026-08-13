@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/13 20:04:46 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/14 02:04:32 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ typedef struct s_node
 	int				data;
 	struct s_node	*next;
 	struct s_node	*prev;
+	
+	
 }					t_node;
 
 #endif
