@@ -6,13 +6,13 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 16:02:44 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 16:25:17 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/16 16:26:43 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void ft_rrotate(t_node **node)
+static void	ft_rrotate(t_node **node)
 {
 	t_node	*temp;
 	t_node	*last;
