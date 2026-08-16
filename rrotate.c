@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rrotate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 11:05:56 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 16:00:38 by seraydin         ###   ########.fr       */
+/*   Created: 2026/08/16 16:02:44 by seraydin          #+#    #+#             */
+/*   Updated: 2026/08/16 16:25:17 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void ft_rotate(t_node **node)
+static void ft_rrotate(t_node **node)
 {
 	t_node	*temp;
 	t_node	*last;
 
 	if (!node || !(*node) || !(*node)->next)
 		return ;
-	temp = *node;
 	last = ft_lstlast(*node);
-	*node = temp->next;
-	(*node)->prev = 0;
-	temp->prev = last;
-	last->next = temp;
+	temp = last->prev;
+	(*node)->prev = last;
+	last->next = *node;
+	last->prev = 0;
 	temp->next = 0;
+	*node = last;
 }
 
-void	ra(t_node **a)
+void	rra(t_node **a)
 {
-	ft_rotate(a);
+	ft_rrotate(a);
 }
 
-void	rb(t_node **b)
+void	rrb(t_node **b)
 {
-	ft_rotate(b);
+	ft_rrotate(b);
 }
 
-void	rr(t_node **a, t_node **b)
+void	rrr(t_node **a, t_node **b)
 {
-	ft_rotate(a);
-	ft_rotate(b);
+	ft_rrotate(a);
+	ft_rrotate(b);
 }
