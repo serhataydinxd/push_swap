@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 19:53:15 by seraydin         ###   ########.fr       */
+/*   Created: 2026/08/13 20:42:57 by seraydin          #+#    #+#             */
+/*   Updated: 2026/08/14 14:34:36 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putnbr(int n)
 {
-	t_node *start = parser(argc, argv);
-	ft_printf("%u\n", calc_disorder(&start));
-	while (start)
+	long int	nb;
+	int			ret;
+	int			written;
+
+	ret = 0;
+	nb = n;
+	if (nb < 0)
 	{
-		ft_printf("%d\n", start->data);
-		if (start->prev)
-			ft_printf("%p\n", start->prev);
-		ft_printf("%p\n", start->next);
-		start = start->next;
+		ret = ft_putchar('-');
+		nb = -nb;
+		if (ret == -1)
+			return (-1);
 	}
+	if (nb >= 10)
+	{
+		written = ft_putnbr(nb / 10);
+		if (written == -1)
+			return (-1);
+		ret += written;
+	}
+	written = ft_putchar((nb % 10) + '0');
+	if (written == -1)
+		return (-1);
+	return (ret + written);
 }

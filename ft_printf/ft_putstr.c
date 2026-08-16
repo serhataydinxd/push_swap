@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 19:53:15 by seraydin         ###   ########.fr       */
+/*   Created: 2026/08/13 20:17:43 by seraydin          #+#    #+#             */
+/*   Updated: 2026/08/14 11:23:49 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putstr(char *s)
 {
-	t_node *start = parser(argc, argv);
-	ft_printf("%u\n", calc_disorder(&start));
-	while (start)
+	int	a;
+
+	a = 0;
+	if (!s)
+		s = "(null)";
+	while (s[a])
 	{
-		ft_printf("%d\n", start->data);
-		if (start->prev)
-			ft_printf("%p\n", start->prev);
-		ft_printf("%p\n", start->next);
-		start = start->next;
+		if (ft_putchar(s[a]) == -1)
+			return (-1);
+		a++;
 	}
+	return (a);
 }

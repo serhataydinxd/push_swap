@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 19:53:15 by seraydin         ###   ########.fr       */
+/*   Created: 2026/08/13 21:03:43 by seraydin          #+#    #+#             */
+/*   Updated: 2026/08/14 12:37:18 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putnbr_base(unsigned int n, char *base)
 {
-	t_node *start = parser(argc, argv);
-	ft_printf("%u\n", calc_disorder(&start));
-	while (start)
+	char	mod;
+	int		written;
+	int		ret;
+
+	ret = 0;
+	if (n >= 16)
 	{
-		ft_printf("%d\n", start->data);
-		if (start->prev)
-			ft_printf("%p\n", start->prev);
-		ft_printf("%p\n", start->next);
-		start = start->next;
+		written = ft_putnbr_base(n / 16, base);
+		if (written == -1)
+			return (-1);
+		ret += written;
 	}
+	mod = base[n % 16];
+	written = ft_putchar(mod);
+	if (written == -1)
+		return (-1);
+	ret += written;
+	return (ret);
 }
