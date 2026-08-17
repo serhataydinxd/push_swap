@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/17 15:11:33 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/17 16:23:51 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	main(int argc, char **argv)
 	t_node	*start;
 
 	start = parser(argc, argv);
-	ft_printf("%u\n", calc_disorder(&start));
+	ft_printf(1, "%u\n", calc_disorder(&start));
 	while (start)
 	{
-		ft_printf("%d\n", start->data);
+		ft_printf(1, "%d\n", start->data);
 		if (start->prev)
-			ft_printf("%p\n", start->prev);
-		ft_printf("%p\n", start->next);
+			ft_printf(1, "%p\n", start->prev);
+		ft_printf(1, "%p\n", start->next);
 		start = start->next;
 	}
 }

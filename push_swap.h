@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 19:52:30 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/17 16:29:42 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			check_any_duplicate(t_node *head);
 t_node			*make_link_list(int argc, char **argv);
 t_node			*parser(int argc, char **argv);
 t_node			*ft_lstlast(t_node *stk);
-unsigned int	ft_lstsize(t_node **stk);
+unsigned int	ft_lstsize(t_node *stk);
 void			ra(t_node **a);
 void			rb(t_node **b);
 void			rr(t_node **a, t_node **b);
