@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 06:06:17 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/17 06:06:19 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/17 15:13:20 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	pa(t_node **a, t_node **b)
 
 void	pb(t_node **a, t_node **b)
 {
-	t_node *new;
+	t_node	*new;
 
 	if (!(*a))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 19:53:15 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:11:33 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_node *start = parser(argc, argv);
+	t_node	*start;
+
+	start = parser(argc, argv);
 	ft_printf("%u\n", calc_disorder(&start));
 	while (start)
 	{
