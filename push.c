@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 06:06:17 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/17 06:06:19 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/17 07:56:59 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	pb(t_node **a, t_node **b)
 	if (!(*a))
 		return ;
 	new = *a;
-	*a = (*a)->next;
 	*a = (*a)->next;
 	if (*a)
 		(*a)->prev = NULL;
