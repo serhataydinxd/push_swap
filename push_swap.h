@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/17 16:29:42 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/17 16:47:13 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,34 @@ typedef struct s_node
 }					t_node;
 typedef struct s_counter
 {
-	size_t	c_sa;
-	size_t	c_sb;
-	size_t	c_ss;
-	size_t	c_pa;
-	size_t	c_pb;
-	size_t	c_ra;
-	size_t	c_rb;
-	size_t	c_rr;
-	size_t	c_rra;
-	size_t	c_rrb;
-	size_t	c_rrr;
-	size_t	c_total;
-}			t_counter;
-int				ft_atoi(const char *nptr);
-int				check_max_min(int result, const char a, int sign);
-void			free_failed_malloc(t_node *head);
-void			check_any_duplicate(t_node *head);
-t_node			*make_link_list(int argc, char **argv);
-t_node			*parser(int argc, char **argv);
-t_node			*ft_lstlast(t_node *stk);
-unsigned int	ft_lstsize(t_node *stk);
-void			ra(t_node **a);
-void			rb(t_node **b);
-void			rr(t_node **a, t_node **b);
-void			rra(t_node **a);
-void			rrb(t_node **b);
-void			rrr(t_node **a, t_node **b);
-unsigned int	calc_disorder(t_node **a);
+	size_t			c_sa;
+	size_t			c_sb;
+	size_t			c_ss;
+	size_t			c_pa;
+	size_t			c_pb;
+	size_t			c_ra;
+	size_t			c_rb;
+	size_t			c_rr;
+	size_t			c_rra;
+	size_t			c_rrb;
+	size_t			c_rrr;
+	size_t			c_total;
+}					t_counter;
+int					ft_atoi(const char *nptr);
+int					check_max_min(int result, const char a, int sign);
+void				free_failed_malloc(t_node *head);
+void				check_any_duplicate(t_node *head);
+t_node				*make_link_list(int argc, char **argv);
+t_node				*parser(int argc, char **argv);
+t_node				*ft_lstlast(t_node *stk);
+unsigned int		ft_lstsize(t_node *stk);
+void				ra(t_node **a);
+void				rb(t_node **b);
+void				rr(t_node **a, t_node **b);
+void				rra(t_node **a);
+void				rrb(t_node **b);
+void				rrr(t_node **a, t_node **b);
+unsigned int		calc_disorder(t_node **a);
+int					ft_atoi(const char *nptr);
 
 #endif
