@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 00:24:25 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/17 06:06:04 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/17 07:00:26 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	swap(t_node **node)
 	first->next->prev = first;
 	first->prev->prev = NULL;
 	first->prev->next = first;
+	(*node) = first->prev;
 }
 
 void	sa(t_node **a)
