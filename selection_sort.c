@@ -1,73 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insertion_sort.c                                   :+:      :+:    :+:   */
+/*   selection_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 07:30:03 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/17 11:52:16 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/19 11:52:59 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	make_r_s(t_node **b, size_t i, int is_rrb)
+void	rotate_push(t_node **a, t_node **b, size_t i)
 {
-	if (is_rrb)
+	size_t	temp;
+
+	temp = ft_lstsize(*a);
+	if (i <= (temp / 2))
 	{
-		while (i-- > 0)
-			rrb(b);
+		while (i--)
+			ra(a);
 	}
 	else
 	{
-		while (i-- > 0)
-			rb(b);
+		i = temp - i;
+		while (i--)
+			rra(a);
 	}
+	pb(a, b);
 }
 
-void	index(t_node **a, t_node **b)
+void	selection_sort(t_node **a)
 {
-	t_node	*temp;
-	size_t	i;
-	size_t	j;
-
-	j = 0;
-	i = 0;
-	temp = *b;
-	while (temp)
-	{
-		temp = temp->next;
-		j++;
-	}
-	temp = *b;
-	while (temp && (*a)->data < temp->data)
-	{
-		temp = temp->next;
-		i++;
-	}
-	if (i > (j / 2))
-	{
-		i = j - i;
-		make_r_s(b, i, 1);
-	}
-	else
-		make_r_s(b, i, 0);
-}
-
-void	insertion_sort(t_node **a)
-{
-	t_node	*b;
+	t_node *temp;
+	t_node *b;
+	size_t i;
+	size_t j;
+	size_t min_val;
 
 	b = NULL;
-	pb(a, &b);
 	while (*a)
 	{
-		if ((*a)->data > b->data)
-			pb(a, &b);
-		else
+		temp = *a;
+		i = 0;
+		j = 1;
+		min_val = temp->data;
+		while (temp)
 		{
-			(a, &b);
+			i++;
+			if (temp && min_val > temp->data)
+			{
+				min_val = temp->data;
+				j = i;
+			}
+
+			temp = temp->next;
 		}
+		rotate_push(a, &b, j - 1);
+	}
+	while (b)
+	{
+		pa(a, &b);
 	}
 }
