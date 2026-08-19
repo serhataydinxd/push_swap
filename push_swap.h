@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/17 16:47:13 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 02:12:34 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "ft_printf/ft_printf.h"
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
 typedef struct s_node
 {
 	int				data;
@@ -54,5 +54,8 @@ void				rrb(t_node **b);
 void				rrr(t_node **a, t_node **b);
 unsigned int		calc_disorder(t_node **a);
 int					ft_atoi(const char *nptr);
-
+void				pa(t_node **a, t_node **b);
+void				pb(t_node **a, t_node **b);
+unsigned int		calc_disorder(t_node **a);
+void				selection_sort(t_node **a);
 #endif
