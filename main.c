@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 10:10:48 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/20 16:31:30 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	a = parser(argc, argv);
 	printf("%u\n", calc_disorder(&a));
-	chunk_based(&a);
+	radix_sort(&a);
 	while (a)
 	{
 		printf("%d\n", a->data);

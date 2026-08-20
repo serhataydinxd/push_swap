@@ -3,7 +3,7 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 
-SRCS	= disorder.c parser.c main.c atoi.c selection_sort.c parser.c push.c rotate.c rrotate.c swap.c utils.c
+SRCS	= disorder.c parser.c main.c atoi.c radix_sort.c push.c rotate.c rrotate.c swap.c utils.c
 OBJS	= $(SRCS:.c=.o)
 
 PRINTF_DIR  = ft_printf

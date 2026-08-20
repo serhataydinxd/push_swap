@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 13:48:36 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 16:37:03 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:30:18 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,15 @@ unsigned int	ft_lstsize(t_node *stk)
 	}
 	return (size);
 }
+
+int	is_sorted(t_node *a)
+{
+	while (a && a->next)
+	{
+		if (a->data > a->next->data)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+

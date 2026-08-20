@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 11:46:17 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:27:46 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ void				pb(t_node **a, t_node **b);
 unsigned int		calc_disorder(t_node **a);
 void				selection_sort(t_node **a);
 void				chunk_based(t_node **a);
+void				radix_sort(t_node **a);
+int					is_sorted(t_node *a);
 #endif
