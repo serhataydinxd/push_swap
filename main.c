@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 17:15:01 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 19:37:12 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ static void	init_counter(t_counter *t)
 
 int	main(int argc, char **argv)
 {
-	t_node	*a;
-	t_counter *t;
+	t_node		*a;
+	t_counter	*t;
+	t_config	*c;
 	//char	b;
 
 	a = parser(argc, argv);
@@ -40,8 +41,11 @@ int	main(int argc, char **argv)
 	t = malloc(sizeof(t_counter));
 	if (!t)
 		return (1);
+	c = malloc(sizeof(t_config));
+	if (!c)
+		return (1);
 	init_counter(t);
-	selection_sort(&a, t);
+	radix_sort(&a, t);
 	free(t);
 	//while (a)
 	//{

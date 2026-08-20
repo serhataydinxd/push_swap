@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/17 06:06:34 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/20 19:13:23 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_failed_malloc(t_node *head)
 	exit(1);
 }
 
-void	check_any_duplicate(t_node *head)
+int	check_any_duplicate(t_node *head)
 {
 	t_node	*temp;
 
@@ -47,11 +47,12 @@ void	check_any_duplicate(t_node *head)
 		while (temp)
 		{
 			if (head->data == temp->data)
-				exit(1);
+				return (0);
 			temp = temp->next;
 		}
 		head = head->next;
 	}
+	return (1);
 }
 
 t_node	*make_link_list(int argc, char **argv)
@@ -88,6 +89,7 @@ t_node	*parser(int argc, char **argv)
 	t_node	*head;
 
 	head = make_link_list(argc, argv);
-	check_any_duplicate(head);
+	if (!check_any_duplicate(head))
+		return (0);
 	return (head);
 }

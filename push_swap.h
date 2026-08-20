@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 17:14:59 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 19:31:14 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
+
+typedef enum e_strategy
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE
+}	t_strategy;
+
+typedef struct s_config
+{
+	t_strategy	strategy;
+	int			st_set;
+	int			bench_mode;
+}				t_config;
+
 typedef struct s_counter
 {
 	size_t			c_sa;
@@ -40,10 +56,11 @@ typedef struct s_counter
 	size_t			c_rrr;
 	size_t			c_total;
 }					t_counter;
+
 int					ft_atoi(const char *nptr);
 int					check_max_min(int result, const char a, int sign);
 void				free_failed_malloc(t_node *head);
-void				check_any_duplicate(t_node *head);
+int					check_any_duplicate(t_node *head);
 t_node				*make_link_list(int argc, char **argv);
 t_node				*parser(int argc, char **argv);
 t_node				*ft_lstlast(t_node *stk);
