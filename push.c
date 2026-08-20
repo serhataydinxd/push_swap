@@ -6,13 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 06:06:17 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/17 16:17:28 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/20 16:41:33 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_node **a, t_node **b)
+void	pa(t_node **a, t_node **b, t_counter *t)
 {
 	t_node	*new;
 
@@ -27,9 +27,15 @@ void	pa(t_node **a, t_node **b)
 	if (*a)
 		(*a)->prev = new;
 	*a = new;
+	if (t)
+	{
+		t->c_pa++;
+		t->c_total++;
+		ft_printf(1, "pa\n");
+	}
 }
 
-void	pb(t_node **a, t_node **b)
+void	pb(t_node **a, t_node **b, t_counter *t)
 {
 	t_node	*new;
 
@@ -44,4 +50,10 @@ void	pb(t_node **a, t_node **b)
 	if (*b)
 		(*b)->prev = new;
 	*b = new;
+	if (t)
+	{
+		t->c_pb++;
+		t->c_total++;
+		ft_printf(1, "pb\n");
+	}
 }

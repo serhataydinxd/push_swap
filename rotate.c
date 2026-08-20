@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:05:56 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/16 16:26:38 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:42:58 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,36 @@ static void	ft_rotate(t_node **node)
 	temp->next = 0;
 }
 
-void	ra(t_node **a)
+void	ra(t_node **a, t_counter *t)
 {
 	ft_rotate(a);
+	if (t)
+	{
+		t->c_ra++;
+		t->c_total++;
+		ft_printf(1, "ra\n");
+	}
 }
 
-void	rb(t_node **b)
+void	rb(t_node **b, t_counter *t)
 {
 	ft_rotate(b);
+	if (t)
+	{
+		t->c_rb++;
+		t->c_total++;
+		ft_printf(1, "rb\n");
+	}
 }
 
-void	rr(t_node **a, t_node **b)
+void	rr(t_node **a, t_node **b, t_counter *t)
 {
 	ft_rotate(a);
 	ft_rotate(b);
+	if (t)
+	{
+		t->c_rr++;
+		t->c_total++;
+		ft_printf(1, "rr\n");
+	}
 }

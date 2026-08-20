@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 16:27:46 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:39:56 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,19 @@ t_node				*make_link_list(int argc, char **argv);
 t_node				*parser(int argc, char **argv);
 t_node				*ft_lstlast(t_node *stk);
 unsigned int		ft_lstsize(t_node *stk);
-void				ra(t_node **a);
-void				rb(t_node **b);
-void				rr(t_node **a, t_node **b);
-void				rra(t_node **a);
-void				rrb(t_node **b);
-void				rrr(t_node **a, t_node **b);
+void				ra(t_node **a, t_counter *t);
+void				rb(t_node **b, t_counter *t);
+void				rr(t_node **a, t_node **b, t_counter *t);
+void				rra(t_node **a, t_counter *t);
+void				rrb(t_node **b, t_counter *t);
+void				rrr(t_node **a, t_node **b, t_counter *t);
 unsigned int		calc_disorder(t_node **a);
 int					ft_atoi(const char *nptr);
-void				pa(t_node **a, t_node **b);
-void				pb(t_node **a, t_node **b);
+void				pa(t_node **a, t_node **b, t_counter *t);
+void				pb(t_node **a, t_node **b, t_counter *t);
+void				sa(t_node **a, t_counter *t);
+void				sb(t_node **a, t_counter *t);
+void				ss(t_node **a, t_node **b, t_counter *t);
 unsigned int		calc_disorder(t_node **a);
 void				selection_sort(t_node **a);
 void				chunk_based(t_node **a);
