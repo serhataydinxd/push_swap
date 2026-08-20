@@ -6,38 +6,55 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/20 10:07:54 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/20 10:43:47 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_and_push(t_node **a, t_node **b, size_t input_range, size_t min)
+size_t	calculate_iteration_count(t_node *a)
 {
-	t_node	*temp_a;
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	i = ft_lstsize(a);
+	while (1)
+	{
+		if (j * j == i)
+			return (j);
+		if (j * j > i)
+			return ((j - 1));
+		j++;
+	}
+}
+void	rotate_and_push(t_node **a, t_node **b, size_t input_range, size_t min,
+		size_t i)
+{
+	size_t	total;
 	size_t	counter;
 	size_t	temp_counter;
+	size_t	total_count;
 
+	total_count = 0;
+	total = ft_lstsize(*a) - i;
 	counter = 0;
-	temp_a = *a;
-	while (temp_a)
+	while (total > total_count)
 	{
-		if (temp_a->data < (input_range + min) && temp_a->data > min)
+		if ((*a)->data < (input_range + min) && (*a)->data > min)
 		{
-			temp_counter = counter;
-			while (counter-- > 0)
-				ra(a);
 			pb(a, b);
-			temp_a = (*a);
-			while (temp_counter-- > 0)
-				rra(a);
+			total_count++;
 		}
 		else
 		{
+			total_count++;
+			ra(a);
 			counter++;
-			temp_a = temp_a->next;
 		}
 	}
+	while (counter-- > 0)
+		rra(a);
 }
 
 void	handle_b(t_node **a, size_t temp, t_node **b, size_t nodes_done)
@@ -62,24 +79,7 @@ void	handle_b(t_node **a, size_t temp, t_node **b, size_t nodes_done)
 		i++;
 	}
 	input_range = (max - min) / calculate_iteration_count(*a);
-	rotate_and_push(a, b, input_range, min);
-}
-
-size_t	calculate_iteration_count(t_node *a)
-{
-	size_t	i;
-	size_t	j;
-
-	j = 0;
-	i = ft_lstsize(a);
-	while (1)
-	{
-		if (j * j == i)
-			return (j);
-		if (j * j > i)
-			return ((j - 1));
-		j++;
-	}
+	rotate_and_push(a, b, input_range, min, i);
 }
 
 void	chunk_based(t_node **a)
