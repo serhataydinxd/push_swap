@@ -6,103 +6,97 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/20 10:43:47 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/21 00:14:01 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	calculate_iteration_count(t_node *a)
+size_t	calculate_iteration_count(t_node **a)
 {
 	size_t	i;
-	size_t	j;
+	size_t	len_a;
 
-	j = 0;
-	i = ft_lstsize(a);
+	len_a = ft_lstsize(*a);
+	i = 0;
 	while (1)
 	{
-		if (j * j == i)
-			return (j);
-		if (j * j > i)
-			return ((j - 1));
-		j++;
+		if (i * i >= len_a)
+			return (i);
+		i++;
 	}
 }
-void	rotate_and_push(t_node **a, t_node **b, size_t input_range, size_t min,
-		size_t i)
-{
-	size_t	total;
-	size_t	counter;
-	size_t	temp_counter;
-	size_t	total_count;
 
-	total_count = 0;
-	total = ft_lstsize(*a) - i;
-	counter = 0;
-	while (total > total_count)
+void	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
+		t_counter *t)
+{
+	size_t	count;
+	size_t	a_len;
+
+	a_len = ft_lstsize(*a);
+	count = 0;
+	while (a_len)
 	{
-		if ((*a)->data < (input_range + min) && (*a)->data > min)
+		if ((*a)->data <= end_limit && (*a)->data >= min)
 		{
-			pb(a, b);
-			total_count++;
+			pb(a, b, t);
+			count++;
 		}
 		else
 		{
-			total_count++;
-			ra(a);
-			counter++;
+			ra(a, t);
 		}
+		a_len--;
 	}
-	while (counter-- > 0)
-		rra(a);
+	selection_sort(b, t);
+	while (count--)
+	{
+		pa(a, b, t);
+		ra(a, t);
+	}
 }
 
-void	handle_b(t_node **a, size_t temp, t_node **b, size_t nodes_done)
+void	handle_b(t_node **a, t_node **b, size_t iteration_count_left,
+		t_counter *t)
 {
+	t_node	*temp;
 	size_t	min;
 	size_t	max;
-	size_t	input_range;
-	size_t	i;
-	t_node	*temp_a;
+	size_t	end_limit;
+	size_t	temp_num;
 
-	temp_a = *a;
-	i = temp * nodes_done;
-	min = temp_a->data;
-	max = temp_a->data;
-	while ((ft_lstsize(*a) - i) > 0 && temp_a)
+	temp_num = (iteration_count_left) * (ft_lstsize(*a)
+			/ calculate_iteration_count(a));
+	temp = *a;
+	min = temp->data;
+	max = temp->data;
+	while (temp && temp_num)
 	{
-		if (min > temp_a->data)
-			min = temp_a->data;
-		if (max < temp_a->data)
-			max = temp_a->data;
-		temp_a = temp_a->next;
-		i++;
+		if (temp->data > max)
+			max = temp->data;
+		if (temp->data < min)
+			min = temp->data;
+		temp = temp->next;
+		temp_num--;
 	}
-	input_range = (max - min) / calculate_iteration_count(*a);
-	rotate_and_push(a, b, input_range, min, i);
+	end_limit = min + (max - min) / iteration_count_left;
+	rotate_and_push(a, b, end_limit, min, t);
 }
 
-void	chunk_based(t_node **a)
+void	chunk_based(t_node **a, t_counter *t)
 {
 	t_node *b;
 	size_t iteration_count;
-	size_t number_of_elements;
-	size_t temp;
+	size_t iteration_count_left;
+	size_t i;
+	i = 0;
 	b = NULL;
-	iteration_count = calculate_iteration_count(*a);
-	number_of_elements = ft_lstsize(*a) / iteration_count;
+	iteration_count = calculate_iteration_count(a);
 	while (iteration_count)
 	{
-		handle_b(a, number_of_elements, &b, ((ft_lstsize(*a)
-					/ number_of_elements) - iteration_count));
-		selection_sort(&b);
-		temp = number_of_elements;
-		while (temp > 0)
-		{
-			pa(a, &b);
-			ra(a);
-			temp--;
-		}
+		iteration_count_left = calculate_iteration_count(a) - i;
+		handle_b(a, &b, iteration_count_left, t);
+		i++;
 		iteration_count--;
 	}
 }
