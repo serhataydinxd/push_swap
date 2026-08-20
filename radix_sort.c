@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 12:17:34 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 16:30:29 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:53:25 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	bit_size(t_node *a)
 	return (bit);
 }
 
-static void	sorter(t_node **a, t_node **b)
+static void	sorter(t_node **a, t_node **b, t_counter *t)
 {
 	int		max_bit;
 	int		bit;
@@ -75,18 +75,18 @@ static void	sorter(t_node **a, t_node **b)
 		while (i < size)
 		{
 			if ((((*a)->index >> bit) & 1) == 1)
-				ra(a);
+				ra(a, t);
 			else
-				pb(a, b);
+				pb(a, b, t);
 			i++;
 		}
 		while (*b)
-			pa(a, b);
+			pa(a, b, t);
 		bit++;
 	}
 }
 
-void	radix_sort(t_node **a)
+void	radix_sort(t_node **a, t_counter *t)
 {
 	t_node	*b;
 
@@ -94,5 +94,5 @@ void	radix_sort(t_node **a)
 		return ;
 	b = 0;
 	assign_index(*a);
-	sorter(a, &b);
+	sorter(a, &b, t);
 }
