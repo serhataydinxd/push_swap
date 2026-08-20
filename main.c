@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 17:04:45 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 17:15:01 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	if (!t)
 		return (1);
 	init_counter(t);
-	radix_sort(&a, t);
+	selection_sort(&a, t);
 	free(t);
 	//while (a)
 	//{

@@ -6,13 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 07:30:03 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/19 11:52:59 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/20 17:17:11 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_push(t_node **a, t_node **b, size_t i)
+void	rotate_push(t_node **a, t_node **b, size_t i, t_counter *t)
 {
 	size_t	temp;
 
@@ -20,18 +20,18 @@ void	rotate_push(t_node **a, t_node **b, size_t i)
 	if (i <= (temp / 2))
 	{
 		while (i--)
-			ra(a);
+			ra(a, t);
 	}
 	else
 	{
 		i = temp - i;
 		while (i--)
-			rra(a);
+			rra(a, t);
 	}
-	pb(a, b);
+	pb(a, b, t);
 }
 
-void	selection_sort(t_node **a)
+void	selection_sort(t_node **a, t_counter *t)
 {
 	t_node *temp;
 	t_node *b;
@@ -49,7 +49,7 @@ void	selection_sort(t_node **a)
 		while (temp)
 		{
 			i++;
-			if (temp && min_val > temp->data)
+			if (temp && (int)min_val > temp->data)
 			{
 				min_val = temp->data;
 				j = i;
@@ -57,10 +57,10 @@ void	selection_sort(t_node **a)
 
 			temp = temp->next;
 		}
-		rotate_push(a, &b, j - 1);
+		rotate_push(a, &b, j - 1, t);
 	}
 	while (b)
 	{
-		pa(a, &b);
+		pa(a, &b, t);
 	}
 }
