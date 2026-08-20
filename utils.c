@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 13:48:36 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 16:30:18 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:45:56 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ int	is_sorted(t_node *a)
 	}
 	return (1);
 }
-
