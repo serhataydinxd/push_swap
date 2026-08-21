@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/21 16:56:17 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:25:39 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,18 @@ static void	parse_flags(char **argv, t_config *c)
 	}
 }
 
+static void	set_data(t_node *temp, char *s, size_t *i)
+{
+	if (is_flag(s))
+	{
+		i++;
+		return ;
+	}
+	temp->next = NULL;
+	temp->data = ft_atoi(s);
+	temp->prev = NULL;
+}
+
 t_node	*make_link_list(int argc, char **argv)
 {
 	t_node	*head;
@@ -117,9 +129,7 @@ t_node	*make_link_list(int argc, char **argv)
 		temp = malloc(sizeof(t_node));
 		if (!temp)
 			free_failed_malloc(head);
-		temp->next = NULL;
-		temp->data = ft_atoi(argv[i]);
-		temp->prev = NULL;
+		set_data(temp, argv[i], &i);
 		if (head == NULL)
 			head = temp;
 		else
@@ -131,12 +141,11 @@ t_node	*make_link_list(int argc, char **argv)
 	return (head);
 }
 
-t_node	*parser(int argc, char **argv)
+t_node	*parser(int argc, char **argv, t_config *c)
 {
 	t_node	*head;
 
-	if (!parse_flags(argv))
-		return (0);
+	parse_flags(argv, c);
 	head = make_link_list(argc, argv);
 	if (!check_any_duplicate(head))
 		return (0);

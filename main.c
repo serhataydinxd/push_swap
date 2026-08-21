@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 16:54:03 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:06:10 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main(int argc, char **argv)
 		return (1);
 	init_counter(t);
 	init_config(c);
-	a = parser(argc, argv);
-	printf("%u\n", calc_disorder(&a));
+	a = parser(argc, argv, c);
+	//printf("%u\n", calc_disorder(&a));
 	radix_sort(&a, t);
 	free(t);
 	//while (a)

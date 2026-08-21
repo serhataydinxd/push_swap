@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 06:06:44 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/20 19:15:00 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:06:36 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	if (!(nptr[i] >= '0' && nptr[i] <= '9') && nptr[i])
-		exit(1);
+		throw_error();
 	return (result * sign);
 }

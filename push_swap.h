@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 17:04:03 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:06:46 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int					check_max_min(int result, const char a, int sign);
 void				free_failed_malloc(t_node *head);
 int					check_any_duplicate(t_node *head);
 t_node				*make_link_list(int argc, char **argv);
-t_node				*parser(int argc, char **argv);
+t_node				*parser(int argc, char **argv, t_config *c);
 t_node				*ft_lstlast(t_node *stk);
 unsigned int		ft_lstsize(t_node *stk);
 void				ra(t_node **a, t_counter *t);
