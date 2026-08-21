@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 18:06:46 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:28:22 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ void				rra(t_node **a, t_counter *t);
 void				rrb(t_node **b, t_counter *t);
 void				rrr(t_node **a, t_node **b, t_counter *t);
 unsigned int		calc_disorder(t_node **a);
-int					ft_atoi(const char *nptr);
 void				pa(t_node **a, t_node **b, t_counter *t);
 void				pb(t_node **a, t_node **b, t_counter *t);
 void				sa(t_node **a, t_counter *t);
 void				sb(t_node **a, t_counter *t);
 void				ss(t_node **a, t_node **b, t_counter *t);
-unsigned int		calc_disorder(t_node **a);
 void				selection_sort(t_node **a, t_counter *t);
 void				chunk_based(t_node **a, t_counter *t);
 void				radix_sort(t_node **a, t_counter *t);
