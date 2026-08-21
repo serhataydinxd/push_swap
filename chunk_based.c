@@ -6,103 +6,100 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/20 10:43:47 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/21 10:16:06 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	calculate_iteration_count(t_node *a)
+size_t	calculate_iteration_count(t_node **a)
 {
 	size_t	i;
-	size_t	j;
+	size_t	len_a;
 
-	j = 0;
-	i = ft_lstsize(a);
+	len_a = ft_lstsize(*a);
+	i = 0;
 	while (1)
 	{
-		if (j * j == i)
-			return (j);
-		if (j * j > i)
-			return ((j - 1));
-		j++;
-	}
-}
-void	rotate_and_push(t_node **a, t_node **b, size_t input_range, size_t min,
-		size_t i)
-{
-	size_t	total;
-	size_t	counter;
-	size_t	temp_counter;
-	size_t	total_count;
-
-	total_count = 0;
-	total = ft_lstsize(*a) - i;
-	counter = 0;
-	while (total > total_count)
-	{
-		if ((*a)->data < (input_range + min) && (*a)->data > min)
-		{
-			pb(a, b);
-			total_count++;
-		}
-		else
-		{
-			total_count++;
-			ra(a);
-			counter++;
-		}
-	}
-	while (counter-- > 0)
-		rra(a);
-}
-
-void	handle_b(t_node **a, size_t temp, t_node **b, size_t nodes_done)
-{
-	size_t	min;
-	size_t	max;
-	size_t	input_range;
-	size_t	i;
-	t_node	*temp_a;
-
-	temp_a = *a;
-	i = temp * nodes_done;
-	min = temp_a->data;
-	max = temp_a->data;
-	while ((ft_lstsize(*a) - i) > 0 && temp_a)
-	{
-		if (min > temp_a->data)
-			min = temp_a->data;
-		if (max < temp_a->data)
-			max = temp_a->data;
-		temp_a = temp_a->next;
+		if (i * i >= len_a)
+			return (i);
 		i++;
 	}
-	input_range = (max - min) / calculate_iteration_count(*a);
-	rotate_and_push(a, b, input_range, min, i);
 }
 
-void	chunk_based(t_node **a)
+size_t	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
+		t_counter *t)
+{
+	size_t	count;
+	size_t	a_len;
+	size_t	processed_num_count;
+
+	processed_num_count = 0;
+	a_len = ft_lstsize(*a);
+	count = 0;
+	while (a_len)
+	{
+		if ((*a)->data <= end_limit && (*a)->data >= min)
+		{
+			pb(a, b, t);
+			count++;
+			processed_num_count++;
+		}
+		else
+			ra(a, t);
+		a_len--;
+	}
+	selection_sort(b, t);
+	while (count)
+	{
+		pa(a, b, t);
+		ra(a, t);
+		count--;
+	}
+	return (processed_num_count);
+}
+
+size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
+		size_t iteration_count_left, t_counter *t)
+{
+	t_node	*temp;
+	size_t	min;
+	size_t	max;
+	size_t	end_limit;
+
+	temp = *a;
+	min = temp->data;
+	max = temp->data;
+	while (temp && unprocessed_num)
+	{
+		if (temp->data > max)
+			max = temp->data;
+		if (temp->data < min)
+			min = temp->data;
+		temp = temp->next;
+		unprocessed_num--;
+	}
+	end_limit = min + (max - min) / iteration_count_left;
+	return (rotate_and_push(a, b, end_limit, min, t));
+}
+
+void	chunk_based(t_node **a, t_counter *t)
 {
 	t_node *b;
 	size_t iteration_count;
-	size_t number_of_elements;
-	size_t temp;
+	size_t i;
+	size_t unprocessed_num_count;
+	size_t iteration_count_left;
+	i = 0;
+	unprocessed_num_count = ft_lstsize(*a);
 	b = NULL;
-	iteration_count = calculate_iteration_count(*a);
-	number_of_elements = ft_lstsize(*a) / iteration_count;
+	iteration_count = calculate_iteration_count(a);
 	while (iteration_count)
 	{
-		handle_b(a, number_of_elements, &b, ((ft_lstsize(*a)
-					/ number_of_elements) - iteration_count));
-		selection_sort(&b);
-		temp = number_of_elements;
-		while (temp > 0)
-		{
-			pa(a, &b);
-			ra(a);
-			temp--;
-		}
+		iteration_count_left = calculate_iteration_count(a) - i;
+		unprocessed_num_count = unprocessed_num_count - handle_b(a, &b,
+				unprocessed_num_count, iteration_count_left, t);
+		i++;
 		iteration_count--;
 	}
 }

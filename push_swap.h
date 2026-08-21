@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 16:49:58 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 17:04:03 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ typedef enum e_strategy
 	SIMPLE,
 	MEDIUM,
 	COMPLEX
-}	t_strategy;
+}					t_strategy;
 
 typedef struct s_config
 {
-	t_strategy	strategy;
-	int			st_set;
-	int			bench_mode;
-}				t_config;
+	t_strategy		strategy;
+	int				st_set;
+	int				bench_mode;
+}					t_config;
 
 typedef struct s_counter
 {
@@ -80,7 +80,7 @@ void				sb(t_node **a, t_counter *t);
 void				ss(t_node **a, t_node **b, t_counter *t);
 unsigned int		calc_disorder(t_node **a);
 void				selection_sort(t_node **a, t_counter *t);
-void				chunk_based(t_node **a);
+void				chunk_based(t_node **a, t_counter *t);
 void				radix_sort(t_node **a, t_counter *t);
 int					is_sorted(t_node *a);
 int					ft_strcmp(const char *s1, const char *s2);
