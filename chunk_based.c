@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/21 10:16:06 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/21 20:17:31 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ size_t	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
 	count = 0;
 	while (a_len)
 	{
-		if ((*a)->data <= end_limit && (*a)->data >= min)
+		if ((size_t)(*a)->data <= end_limit && (size_t)(*a)->data >= min)
 		{
 			pb(a, b, t);
 			count++;
@@ -72,9 +72,9 @@ size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
 	max = temp->data;
 	while (temp && unprocessed_num)
 	{
-		if (temp->data > max)
+		if ((size_t)temp->data > max)
 			max = temp->data;
-		if (temp->data < min)
+		if ((size_t)temp->data < min)
 			min = temp->data;
 		temp = temp->next;
 		unprocessed_num--;
