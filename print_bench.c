@@ -1,42 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   print_bench.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 16:33:48 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 19:36:52 by seraydin         ###   ########.fr       */
+/*   Created: 2026/08/21 19:13:21 by seraydin          #+#    #+#             */
+/*   Updated: 2026/08/21 20:15:05 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-unsigned int	calc_disorder(t_node **a)
+void	print_bench(unsigned int in_dis, t_counter *t, t_config *c)
 {
-	t_node			*one;
-	t_node			*two;
-	int				total_pairs;
-	int				mistakes;
-	unsigned int	scaled;
-
-	if (!a || !*a)
-		return (0);
-	one = *a;
-	total_pairs = 0;
-	mistakes = 0;
-	while (one)
-	{
-		two = one->next;
-		while (two)
-		{
-			total_pairs++;
-			if (one->data > two->data)
-				mistakes++;
-			two = two->next;
-		}
-		one = one->next;
-	}
-	scaled = (mistakes * 10000) / total_pairs;
-	return (scaled);
+	(void) t;
+	(void) c;
+	ft_printf(2, "[bench] disorder: %u.%u%%\n", (in_dis / 100), (in_dis % 100));
 }

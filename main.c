@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 18:06:10 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:12:01 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,31 @@ static void	init_config(t_config *c)
 	c->bench_mode = 0;
 }
 
+static void execute(t_node **a, t_counter *t, t_config *c)
+{
+	unsigned int	initial_disorder;
+
+	initial_disorder = calc_disorder(a);
+	if (c->strategy == ADAPTIVE)
+		adaptive(initial_disorder, a, t);
+	else if (c->strategy == SIMPLE)
+		selection_sort(a, t);
+	else if (c->strategy == MEDIUM)
+		chunk_based(a, t);
+	else if (c->strategy == COMPLEX)
+		radix_sort(a, t);
+	if (c->bench_mode == 1)
+		print_bench(initial_disorder, t, c);
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_node		*a;
 	t_counter	*t;
 	t_config	*c;
 	//char	b;
-
+	(void)argc;
 	t = malloc(sizeof(t_counter));
 	if (!t)
 		return (1);
@@ -51,10 +69,11 @@ int	main(int argc, char **argv)
 		return (1);
 	init_counter(t);
 	init_config(c);
-	a = parser(argc, argv, c);
+	a = parser(argv, c);
 	//printf("%u\n", calc_disorder(&a));
-	radix_sort(&a, t);
+	execute(&a, t, c);
 	free(t);
+	free(c);
 	//while (a)
 	//{
 		//printf("%d\n", a->data);

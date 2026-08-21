@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 18:28:22 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:10:45 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "ft_printf/ft_printf.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -61,8 +60,8 @@ int					ft_atoi(const char *nptr);
 int					check_max_min(int result, const char a, int sign);
 void				free_failed_malloc(t_node *head);
 int					check_any_duplicate(t_node *head);
-t_node				*make_link_list(int argc, char **argv);
-t_node				*parser(int argc, char **argv, t_config *c);
+t_node				*make_link_list(char **argv);
+t_node				*parser(char **argv, t_config *c);
 t_node				*ft_lstlast(t_node *stk);
 unsigned int		ft_lstsize(t_node *stk);
 void				ra(t_node **a, t_counter *t);
@@ -83,4 +82,7 @@ void				radix_sort(t_node **a, t_counter *t);
 int					is_sorted(t_node *a);
 int					ft_strcmp(const char *s1, const char *s2);
 void				throw_error(void);
+void				parse_flags(char **argv, t_config *c);
+void				adaptive(unsigned int in_dis, t_node **a, t_counter *t);
+void				print_bench(unsigned int in_dis, t_counter *t, t_config *c);
 #endif

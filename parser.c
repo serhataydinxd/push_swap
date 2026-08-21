@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/21 18:25:39 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:10:47 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,51 +70,14 @@ static int	is_flag(char *str)
 	return (0);
 }
 
-static void	set_strat(t_config *c, t_strategy s)
+static void	set_data(t_node *temp, char *s)
 {
-	if (!c->st_set)
-	{
-		c->strategy = s;
-		c->st_set = 1;
-		return ;
-	}
-	throw_error();
-}
-
-static void	parse_flags(char **argv, t_config *c)
-{
-	int	a;
-
-	a = 1;
-	while (argv[a])
-	{
-		if ((!ft_strcmp(argv[a], "--simple")))
-			set_strat(c, SIMPLE);
-		else if (!ft_strcmp(argv[a], "--medium"))
-			set_strat(c, MEDIUM);
-		else if (!ft_strcmp(argv[a], "--complex"))
-			set_strat(c, COMPLEX);
-		else if (!ft_strcmp(argv[a], "--adaptive"))
-			set_strat(c, ADAPTIVE);
-		else if (!ft_strcmp(argv[a], "--bench"))
-			c->bench_mode = 1;
-		a++;
-	}
-}
-
-static void	set_data(t_node *temp, char *s, size_t *i)
-{
-	if (is_flag(s))
-	{
-		i++;
-		return ;
-	}
 	temp->next = NULL;
 	temp->data = ft_atoi(s);
 	temp->prev = NULL;
 }
 
-t_node	*make_link_list(int argc, char **argv)
+t_node	*make_link_list(char **argv)
 {
 	t_node	*head;
 	t_node	*end;
@@ -124,29 +87,32 @@ t_node	*make_link_list(int argc, char **argv)
 	i = 1;
 	end = NULL;
 	head = NULL;
-	while (--argc > 0)
+	while (argv[i])
 	{
-		temp = malloc(sizeof(t_node));
-		if (!temp)
-			free_failed_malloc(head);
-		set_data(temp, argv[i], &i);
-		if (head == NULL)
-			head = temp;
-		else
-			end->next = temp;
-		temp->prev = end;
-		end = temp;
+		if (!is_flag(argv[i]))
+		{
+			temp = malloc(sizeof(t_node));
+			if (!temp)
+				free_failed_malloc(head);
+			set_data(temp, argv[i]);
+			if (head == NULL)
+				head = temp;
+			else
+				end->next = temp;
+			temp->prev = end;
+			end = temp;
+		}
 		i++;
 	}
 	return (head);
 }
 
-t_node	*parser(int argc, char **argv, t_config *c)
+t_node	*parser(char **argv, t_config *c)
 {
 	t_node	*head;
 
 	parse_flags(argv, c);
-	head = make_link_list(argc, argv);
+	head = make_link_list(argv);
 	if (!check_any_duplicate(head))
 		return (0);
 	return (head);

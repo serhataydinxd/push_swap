@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   adaptive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/16 16:33:48 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 19:36:52 by seraydin         ###   ########.fr       */
+/*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
+/*   Updated: 2026/08/21 20:00:43 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-unsigned int	calc_disorder(t_node **a)
+void	adaptive(unsigned int in_dis, t_node **a, t_counter *t)
 {
-	t_node			*one;
-	t_node			*two;
-	int				total_pairs;
-	int				mistakes;
-	unsigned int	scaled;
 
-	if (!a || !*a)
-		return (0);
-	one = *a;
-	total_pairs = 0;
-	mistakes = 0;
-	while (one)
-	{
-		two = one->next;
-		while (two)
-		{
-			total_pairs++;
-			if (one->data > two->data)
-				mistakes++;
-			two = two->next;
-		}
-		one = one->next;
-	}
-	scaled = (mistakes * 10000) / total_pairs;
-	return (scaled);
+	if (!a || !*a || !(*a)->next)
+		return ;
+	if (in_dis < 2000)
+		selection_sort(a, t);
+	else if (in_dis < 5000)
+		chunk_based(a, t);
+	else
+		radix_sort(a, t);
 }
