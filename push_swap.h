@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 19:31:14 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 16:49:58 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct s_node
 
 typedef enum e_strategy
 {
+	ADAPTIVE,
 	SIMPLE,
 	MEDIUM,
-	COMPLEX,
-	ADAPTIVE
+	COMPLEX
 }	t_strategy;
 
 typedef struct s_config
@@ -83,4 +83,6 @@ void				selection_sort(t_node **a, t_counter *t);
 void				chunk_based(t_node **a);
 void				radix_sort(t_node **a, t_counter *t);
 int					is_sorted(t_node *a);
+int					ft_strcmp(const char *s1, const char *s2);
+void				throw_error(void);
 #endif

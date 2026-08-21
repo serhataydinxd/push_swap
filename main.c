@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 19:37:12 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 16:54:03 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ static void	init_counter(t_counter *t)
 	t->c_total = 0;
 }
 
+static void	init_config(t_config *c)
+{
+	c->strategy = ADAPTIVE;
+	c->st_set = 0;
+	c->bench_mode = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_node		*a;
@@ -36,8 +43,6 @@ int	main(int argc, char **argv)
 	t_config	*c;
 	//char	b;
 
-	a = parser(argc, argv);
-	printf("%u\n", calc_disorder(&a));
 	t = malloc(sizeof(t_counter));
 	if (!t)
 		return (1);
@@ -45,6 +50,9 @@ int	main(int argc, char **argv)
 	if (!c)
 		return (1);
 	init_counter(t);
+	init_config(c);
+	a = parser(argc, argv);
+	printf("%u\n", calc_disorder(&a));
 	radix_sort(&a, t);
 	free(t);
 	//while (a)

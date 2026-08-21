@@ -6,10 +6,11 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 13:48:36 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 16:45:56 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 16:46:56 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
 t_node	*ft_lstlast(t_node *stk)
@@ -45,4 +46,22 @@ int	is_sorted(t_node *a)
 		a = a->next;
 	}
 	return (1);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	a;
+
+	a = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (s1[a] && s2[a] && (s1[a] == s2[a]))
+		a++;
+	return ((unsigned char)s1[a] - (unsigned char)s2[a]);
+}
+
+void	throw_error(void)
+{
+	ft_printf(2, "Error\n");
+	exit(1);
 }
