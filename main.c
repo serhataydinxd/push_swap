@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 20:12:01 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:40:28 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_counter(t_counter *t)
 static void	init_config(t_config *c)
 {
 	c->strategy = ADAPTIVE;
+	c->a_strategy = ADAPTIVE;
 	c->st_set = 0;
 	c->bench_mode = 0;
 }
@@ -42,7 +43,7 @@ static void execute(t_node **a, t_counter *t, t_config *c)
 
 	initial_disorder = calc_disorder(a);
 	if (c->strategy == ADAPTIVE)
-		adaptive(initial_disorder, a, t);
+		adaptive(initial_disorder, a, t, c);
 	else if (c->strategy == SIMPLE)
 		selection_sort(a, t);
 	else if (c->strategy == MEDIUM)
