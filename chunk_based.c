@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/21 00:14:01 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/21 10:16:06 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ size_t	calculate_iteration_count(t_node **a)
 	}
 }
 
-void	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
+size_t	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
 		t_counter *t)
 {
 	size_t	count;
 	size_t	a_len;
+	size_t	processed_num_count;
 
+	processed_num_count = 0;
 	a_len = ft_lstsize(*a);
 	count = 0;
 	while (a_len)
@@ -41,61 +43,62 @@ void	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
 		{
 			pb(a, b, t);
 			count++;
+			processed_num_count++;
 		}
 		else
-		{
 			ra(a, t);
-		}
 		a_len--;
 	}
 	selection_sort(b, t);
-	while (count--)
+	while (count)
 	{
 		pa(a, b, t);
 		ra(a, t);
+		count--;
 	}
+	return (processed_num_count);
 }
 
-void	handle_b(t_node **a, t_node **b, size_t iteration_count_left,
-		t_counter *t)
+size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
+		size_t iteration_count_left, t_counter *t)
 {
 	t_node	*temp;
 	size_t	min;
 	size_t	max;
 	size_t	end_limit;
-	size_t	temp_num;
 
-	temp_num = (iteration_count_left) * (ft_lstsize(*a)
-			/ calculate_iteration_count(a));
 	temp = *a;
 	min = temp->data;
 	max = temp->data;
-	while (temp && temp_num)
+	while (temp && unprocessed_num)
 	{
 		if (temp->data > max)
 			max = temp->data;
 		if (temp->data < min)
 			min = temp->data;
 		temp = temp->next;
-		temp_num--;
+		unprocessed_num--;
 	}
 	end_limit = min + (max - min) / iteration_count_left;
-	rotate_and_push(a, b, end_limit, min, t);
+	return (rotate_and_push(a, b, end_limit, min, t));
 }
 
 void	chunk_based(t_node **a, t_counter *t)
 {
 	t_node *b;
 	size_t iteration_count;
-	size_t iteration_count_left;
 	size_t i;
+	size_t unprocessed_num_count;
+	size_t iteration_count_left;
 	i = 0;
+	unprocessed_num_count = ft_lstsize(*a);
 	b = NULL;
 	iteration_count = calculate_iteration_count(a);
 	while (iteration_count)
 	{
 		iteration_count_left = calculate_iteration_count(a) - i;
-		handle_b(a, &b, iteration_count_left, t);
+		unprocessed_num_count = unprocessed_num_count - handle_b(a, &b,
+				unprocessed_num_count, iteration_count_left, t);
 		i++;
 		iteration_count--;
 	}
