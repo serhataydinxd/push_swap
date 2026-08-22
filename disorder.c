@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 16:33:48 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 19:36:52 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/22 10:38:05 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned int	calc_disorder(t_node **a)
 	int				mistakes;
 	unsigned int	scaled;
 
-	if (!a || !*a)
+	if (!a || !*a || !(*a)->next)
 		return (0);
 	one = *a;
 	total_pairs = 0;

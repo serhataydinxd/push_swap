@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/21 20:17:31 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/22 10:36:19 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	calculate_iteration_count(t_node **a)
 	}
 }
 
-size_t	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
+size_t	rotate_and_push(t_node **a, t_node **b, int end_limit, int min,
 		t_counter *t)
 {
 	size_t	count;
@@ -39,7 +39,7 @@ size_t	rotate_and_push(t_node **a, t_node **b, size_t end_limit, size_t min,
 	count = 0;
 	while (a_len)
 	{
-		if ((size_t)(*a)->data <= end_limit && (size_t)(*a)->data >= min)
+		if ((int)(*a)->data <= end_limit && (int)(*a)->data >= min)
 		{
 			pb(a, b, t);
 			count++;
@@ -63,18 +63,18 @@ size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
 		size_t iteration_count_left, t_counter *t)
 {
 	t_node	*temp;
-	size_t	min;
-	size_t	max;
-	size_t	end_limit;
+	int		min;
+	int		max;
+	int		end_limit;
 
 	temp = *a;
 	min = temp->data;
 	max = temp->data;
 	while (temp && unprocessed_num)
 	{
-		if ((size_t)temp->data > max)
+		if ((int)temp->data > max)
 			max = temp->data;
-		if ((size_t)temp->data < min)
+		if ((int)temp->data < min)
 			min = temp->data;
 		temp = temp->next;
 		unprocessed_num--;
@@ -85,11 +85,12 @@ size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
 
 void	chunk_based(t_node **a, t_counter *t)
 {
-	t_node *b;
-	size_t iteration_count;
-	size_t i;
-	size_t unprocessed_num_count;
-	size_t iteration_count_left;
+	t_node	*b;
+	size_t	iteration_count;
+	size_t	i;
+	size_t	unprocessed_num_count;
+	size_t	iteration_count_left;
+
 	i = 0;
 	unprocessed_num_count = ft_lstsize(*a);
 	b = NULL;

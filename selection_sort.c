@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 07:30:03 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/20 17:17:11 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/22 10:35:54 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ void	rotate_push(t_node **a, t_node **b, size_t i, t_counter *t)
 
 void	selection_sort(t_node **a, t_counter *t)
 {
-	t_node *temp;
-	t_node *b;
-	size_t i;
-	size_t j;
-	size_t min_val;
+	t_node	*temp;
+	t_node	*b;
+	size_t	i;
+	size_t	j;
+	int		min_val;
 
+	if (is_sorted(*a))
+		return ;
 	b = NULL;
 	while (*a)
 	{
@@ -49,18 +51,15 @@ void	selection_sort(t_node **a, t_counter *t)
 		while (temp)
 		{
 			i++;
-			if (temp && (int)min_val > temp->data)
+			if (temp && min_val > temp->data)
 			{
 				min_val = temp->data;
 				j = i;
 			}
-
 			temp = temp->next;
 		}
 		rotate_push(a, &b, j - 1, t);
 	}
 	while (b)
-	{
 		pa(a, &b, t);
-	}
 }

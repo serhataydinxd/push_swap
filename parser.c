@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/21 20:10:47 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/22 10:27:58 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	check_max_min(int result, const char a, int sign)
 	long int	min;
 
 	min = -2147483648;
-	if ((result > ((2147483647) - (a - '0')) / 10))
-		return (0);
-	if (result > (min - (a - '0')) / 10 && sign == -1)
-		return (0);
+	if ((result > ((2147483647) - (a - '0')) / 10) && sign == 1)
+		throw_error();
+	if (result > (-min - (a - '0')) / 10 && sign == -1)
+		throw_error();
 	return (1);
 }
 
