@@ -6,13 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/22 11:19:28 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 02:10:53 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	calculate_iteration_count(t_node **a)
+static size_t	calculate_iteration_count(t_node **a)
 {
 	size_t	i;
 	size_t	len_a;
@@ -27,7 +27,17 @@ size_t	calculate_iteration_count(t_node **a)
 	}
 }
 
-size_t	rotate_and_push(t_node **a, t_node **b, int end_limit, int min,
+static void	change_a(t_node **a, t_node **b, size_t *count, t_counter *t)
+{
+	while (*count)
+	{
+		pa(a, b, t);
+		ra(a, t);
+		(*count)--;
+	}
+}
+
+static size_t	rotate_and_push(t_node **a, t_node **b, int end_limit, int min,
 		t_counter *t)
 {
 	size_t	count;
@@ -49,17 +59,12 @@ size_t	rotate_and_push(t_node **a, t_node **b, int end_limit, int min,
 			ra(a, t);
 		a_len--;
 	}
-	selection_sort(b, t);
-	while (count)
-	{
-		pa(a, b, t);
-		ra(a, t);
-		count--;
-	}
+	fake_selection_sort(a, b, t);
+	change_a(a, b, &count, t);
 	return (processed_num_count);
 }
 
-size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
+static size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
 		size_t iteration_count_left, t_counter *t)
 {
 	t_node	*temp;

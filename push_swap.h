@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 20:34:44 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 00:53:26 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef enum e_strategy
 
 typedef struct s_config
 {
-	t_strategy	strategy;
-	t_strategy	a_strategy;
-	int			st_set;
-	int			bench_mode;
-}				t_config;
+	t_strategy		strategy;
+	t_strategy		a_strategy;
+	int				st_set;
+	int				bench_mode;
+}					t_config;
 
 typedef struct s_counter
 {
@@ -56,7 +56,7 @@ typedef struct s_counter
 	size_t			c_rrr;
 	size_t			c_total;
 }					t_counter;
-
+void				fake_selection_sort(t_node **a, t_node **b, t_counter *t);
 int					ft_atoi(const char *nptr);
 int					check_max_min(int result, const char a, int sign);
 void				free_failed_malloc(t_node *head);
@@ -84,6 +84,7 @@ int					is_sorted(t_node *a);
 int					ft_strcmp(const char *s1, const char *s2);
 void				throw_error(void);
 void				parse_flags(char **argv, t_config *c);
-void				adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c);
+void				adaptive(unsigned int in_dis, t_node **a, t_counter *t,
+						t_config *c);
 void				print_bench(unsigned int in_dis, t_counter *t, t_config *c);
 #endif

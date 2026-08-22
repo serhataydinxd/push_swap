@@ -6,38 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/22 11:17:41 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 02:12:33 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_max_min(int result, const char a, int sign)
-{
-	long int	min;
-
-	min = -2147483648;
-	if ((result > ((2147483647) - (a - '0')) / 10) && sign == 1)
-		throw_error();
-	if (result > (-min - (a - '0')) / 10 && sign == -1)
-		throw_error();
-	return (1);
-}
-
-void	free_failed_malloc(t_node *head)
-{
-	t_node	*temp;
-
-	while (head)
-	{
-		temp = head->next;
-		free(head);
-		head = temp;
-	}
-	exit(1);
-}
-
-int	check_any_duplicate(t_node *head)
+static int	check_any_duplicate(t_node *head)
 {
 	t_node	*temp;
 
@@ -77,7 +52,7 @@ static void	set_data(t_node *temp, char *s)
 	temp->prev = NULL;
 }
 
-t_node	*make_link_list(char **argv)
+static t_node	*make_link_list(char **argv)
 {
 	t_node	*head;
 	t_node	*end;
@@ -94,7 +69,7 @@ t_node	*make_link_list(char **argv)
 			temp = malloc(sizeof(t_node));
 			if (!temp)
 				free_failed_malloc(head);
-			set_data(temp, argv[i]);
+			set_data(temp, argv[i++]);
 			if (head == NULL)
 				head = temp;
 			else
@@ -102,7 +77,6 @@ t_node	*make_link_list(char **argv)
 			temp->prev = end;
 			end = temp;
 		}
-		i++;
 	}
 	return (head);
 }

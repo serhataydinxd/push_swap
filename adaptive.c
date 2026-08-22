@@ -6,20 +6,21 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/22 11:45:54 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 02:10:29 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_two(t_node **a, t_counter *t)
+static void	sort_two(t_node **a, t_counter *t)
 {
 	if (!is_sorted(*a))
 		ra(a, t);
 	if (is_sorted(*a))
 		return ;
 }
-void	sort_three(t_node **a, t_counter *t)
+
+static void	sort_three(t_node **a, t_counter *t)
 {
 	int	first;
 	int	second;
@@ -52,20 +53,15 @@ void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
 {
 	if (!a || !*a || !(*a)->next)
 		return ;
-	if (in_dis == 2)
+	if (in_dis < 2000 || in_dis == 2 || in_dis == 3)
 	{
 		c->a_strategy = SIMPLE;
-		sort_two(a, t);
-	}
-	if (in_dis == 3)
-	{
-		c->a_strategy = SIMPLE;
-		sort_three(a, t);
-	}
-	if (in_dis < 2000)
-	{
-		c->a_strategy = SIMPLE;
-		selection_sort(a, t);
+		if (in_dis == 2)
+			sort_two(a, t);
+		else if (in_dis == 3)
+			sort_three(a, t);
+		else
+			selection_sort(a, t);
 	}
 	else if (in_dis < 5000)
 	{

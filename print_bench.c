@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_bench.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 19:13:21 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 20:52:41 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 02:11:58 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	print_bench(unsigned int in_dis, t_counter *t, t_config *c)
 {
-	(void) t;
-	(void) c;
+	(void)t;
+	(void)c;
 	ft_printf(2, "[bench] disorder: %u.%u%%\n", (in_dis / 100), (in_dis % 100));
 	if (c->st_set)
 	{
@@ -37,6 +37,8 @@ void	print_bench(unsigned int in_dis, t_counter *t, t_config *c)
 			ft_printf(2, "[bench] strategy: Adaptive / O(n*log(n))\n");
 	}
 	ft_printf(2, "[bench] total_ops: %d\n", t->c_total);
-	ft_printf(2, "[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", t->c_sa, t->c_sb, t->c_ss, t->c_pa, t->c_pb);
-	ft_printf(2, "[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n", t->c_ra, t->c_rb, t->c_rr, t->c_rra, t->c_rrb, t->c_rrr);
+	ft_printf(2, "[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", t->c_sa,
+		t->c_sb, t->c_ss, t->c_pa, t->c_pb);
+	ft_printf(2, "[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
+		t->c_ra, t->c_rb, t->c_rr, t->c_rra, t->c_rrb, t->c_rrr);
 }

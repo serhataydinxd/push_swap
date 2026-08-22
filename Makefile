@@ -5,7 +5,7 @@ CFLAGS	= -Wall -Wextra -Werror
 
 SRCS	= disorder.c parser.c main.c atoi.c selection_sort.c radix_sort.c \
 		  push.c rotate.c rrotate.c swap.c utils.c flag_parser.c adaptive.c \
-		  print_bench.c chunk_based.c
+		  print_bench.c chunk_based.c 	fake_selection_sort.c
 OBJS	= $(SRCS:.c=.o)
 
 PRINTF_DIR  = ft_printf
