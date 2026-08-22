@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 20:40:28 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/22 11:26:24 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	init_config(t_config *c)
 	c->bench_mode = 0;
 }
 
-static void execute(t_node **a, t_counter *t, t_config *c)
+static void	execute(t_node **a, t_counter *t, t_config *c)
 {
 	unsigned int	initial_disorder;
 
@@ -52,7 +52,6 @@ static void execute(t_node **a, t_counter *t, t_config *c)
 		radix_sort(a, t);
 	if (c->bench_mode == 1)
 		print_bench(initial_disorder, t, c);
-
 }
 
 int	main(int argc, char **argv)
@@ -60,7 +59,8 @@ int	main(int argc, char **argv)
 	t_node		*a;
 	t_counter	*t;
 	t_config	*c;
-	//char	b;
+	t_node		*temp;
+
 	(void)argc;
 	t = malloc(sizeof(t_counter));
 	if (!t)
@@ -71,19 +71,14 @@ int	main(int argc, char **argv)
 	init_counter(t);
 	init_config(c);
 	a = parser(argv, c);
-	//printf("%u\n", calc_disorder(&a));
 	execute(&a, t, c);
 	free(t);
 	free(c);
-	//while (a)
-	//{
-		//printf("%d\n", a->data);
-		//if (a->prev)
-			//printf("previous %p\n  ", a->prev);
-		//printf("own %p\n ", a);
-		//printf("next %p\n", a->next);
-		//a = a->next;
-	//}
-	//b = 'a';
-	//printf("%p", &b);
+	while (a)
+	{
+		temp = a;
+		a = a->next;
+		free(temp);
+	}
+	return (0);
 }

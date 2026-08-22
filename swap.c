@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 00:24:25 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/20 16:44:49 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/22 11:32:51 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,27 @@
 static void	swap(t_node **node)
 {
 	t_node	*first;
+	t_node	*second;
 
+	if (!node || !(*node) || !(*node)->next)
+		return ;
 	first = (*node);
-	first->next = (*node)->next->next;
-	first->prev = first->next->prev;
-	first->next->prev = first;
-	first->prev->prev = NULL;
-	first->prev->next = first;
-	(*node) = first->prev;
+	second = first->next;
+	if (!second->next)
+	{
+		second->prev = NULL;
+		second->next = first;
+		first->prev = second;
+		first->next = NULL;
+		*node = second;
+		return ;
+	}
+	first->next = second->next;
+	first->prev = second;
+	second->next->prev = first;
+	second->prev = NULL;
+	second->next = first;
+	(*node) = second;
 }
 
 void	sa(t_node **a, t_counter *t)

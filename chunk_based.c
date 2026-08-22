@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/22 10:36:19 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/22 11:19:28 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	chunk_based(t_node **a, t_counter *t)
 	size_t	unprocessed_num_count;
 	size_t	iteration_count_left;
 
+	if (is_sorted(*a))
+		return ;
 	i = 0;
 	unprocessed_num_count = ft_lstsize(*a);
 	b = NULL;

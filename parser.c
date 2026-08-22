@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/22 10:27:58 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/22 11:17:41 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ t_node	*parser(char **argv, t_config *c)
 	parse_flags(argv, c);
 	head = make_link_list(argv);
 	if (!check_any_duplicate(head))
-		return (0);
+		throw_error();
 	return (head);
 }
