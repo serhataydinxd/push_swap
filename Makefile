@@ -3,7 +3,7 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 
-SRCS	= adaptive.c atoi.c chunk_based.c disorder.c fake_selection_sort.c flag_parser.c \
+SRCS	= adaptive.c atol.c chunk_based.c disorder.c fake_selection_sort.c flag_parser.c \
 		  main.c parser.c print_bench.c push.c radix_sort.c rotate.c rrotate.c \
 		  selection_sort.c swap.c utils.c utils2.c
 OBJS	= $(SRCS:.c=.o)

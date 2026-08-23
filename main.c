@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 14:43:32 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 20:05:20 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	execute(t_node **a, t_counter *t, t_config *c)
 	unsigned int	initial_disorder;
 
 	initial_disorder = calc_disorder(a);
+	assign_index(*a);
 	if (c->strategy == ADAPTIVE)
 		adaptive(initial_disorder, a, t, c);
 	else if (c->strategy == SIMPLE)

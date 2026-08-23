@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 12:17:34 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 19:32:09 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 20:05:33 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ void	radix_sort(t_node **a, t_counter *t)
 	if (!a || !*a || !(*a)->next || is_sorted(*a))
 		return ;
 	b = 0;
-	assign_index(*a);
 	sorter(a, &b, t);
 }
