@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 16:11:16 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 17:46:53 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ static void	sort_chunks(t_node **a, t_node **b, t_chunk *chunk, t_counter *t)
 
 void	chunk_based(t_node **a, t_counter *t)
 {
-	t_node *b;
-	t_chunk chunk;
+	t_node	*b;
+	t_chunk	chunk;
 
 	if (is_sorted(*a))
 		return ;

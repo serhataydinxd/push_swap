@@ -6,11 +6,10 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 13:48:36 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/21 16:46:56 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 17:59:48 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
 t_node	*ft_lstlast(t_node *stk)
@@ -60,8 +59,9 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[a] - (unsigned char)s2[a]);
 }
 
-void	throw_error(void)
+void	throw_error(t_node *a)
 {
+	free_stack(a);
 	ft_printf(2, "Error\n");
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 14:56:42 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 18:48:07 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,13 @@ static int	is_flag(char *str)
 	return (0);
 }
 
-static void	set_data(t_node *temp, char *s)
-{
-	temp->next = NULL;
-	temp->data = ft_atoi(s);
-	temp->prev = NULL;
-}
-
 static t_node	*make_link_list(char **argv)
 {
 	t_node	*head;
 	t_node	*end;
 	t_node	*temp;
 	size_t	i;
+	long	data;
 
 	i = 1;
 	end = NULL;
@@ -66,16 +60,14 @@ static t_node	*make_link_list(char **argv)
 	{
 		if (!is_flag(argv[i]))
 		{
-			temp = malloc(sizeof(t_node));
+			data = ft_atol(argv[i]);
+			if (data < -2147483648 || data > 2147483647)
+				throw_error(head);
+			temp = ft_stknew(data);
 			if (!temp)
-				free_stack(head);
-			set_data(temp, argv[i]);
-			if (head == NULL)
-				head = temp;
-			else
-				end->next = temp;
-			temp->prev = end;
-			end = temp;
+				throw_error(head);
+			if (!ft_stkadd_back(&head, temp))
+				throw_error(head);
 		}
 		i++;
 	}
@@ -86,9 +78,10 @@ t_node	*parser(char **argv, t_config *c)
 {
 	t_node	*head;
 
-	parse_flags(argv, c);
+	if (parse_flags(argv, c) > 1)
+		throw_error(0);
 	head = make_link_list(argv);
 	if (!check_any_duplicate(head))
-		throw_error();
+		throw_error(head);
 	return (head);
 }

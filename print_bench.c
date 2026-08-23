@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 19:13:21 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 14:37:52 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 19:24:47 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	print_strategy(t_config *c)
 		else if (c->strategy == COMPLEX)
 			ft_printf(2, "[bench] strategy: Complex / O(n*log(n))\n");
 	}
-	else
+	if (!c->st_set || c->strategy == ADAPTIVE)
 	{
 		if (c->a_strategy == SIMPLE)
 			ft_printf(2, "[bench] strategy: Adaptive / O(n^2)\n");

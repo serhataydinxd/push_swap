@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 16:10:47 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 19:00:33 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_config
 	int				st_set;
 	int				bench_mode;
 }					t_config;
+
 typedef struct s_chunk
 {
 	int				*sorted_array;
@@ -48,7 +49,6 @@ typedef struct s_chunk
 	int				chunk_min;
 	int				chunk_max;
 }					t_chunk;
-
 
 typedef struct s_counter
 {
@@ -67,8 +67,8 @@ typedef struct s_counter
 }					t_counter;
 
 void				fake_selection_sort(t_node **a, t_node **b, t_counter *t);
-int					ft_atoi(const char *nptr);
-int					check_max_min(int result, const char a, int sign);
+long				ft_atol(const char *nptr);
+int					check_max_min(long result, const char a, int sign);
 void				free_stack(t_node *head);
 t_node				*parser(char **argv, t_config *c);
 t_node				*ft_lstlast(t_node *stk);
@@ -90,9 +90,11 @@ void				chunk_based(t_node **a, t_counter *t);
 void				radix_sort(t_node **a, t_counter *t);
 int					is_sorted(t_node *a);
 int					ft_strcmp(const char *s1, const char *s2);
-void				throw_error(void);
-void				parse_flags(char **argv, t_config *c);
+void				throw_error(t_node *a);
+int					parse_flags(char **argv, t_config *c);
 void				adaptive(unsigned int in_dis, t_node **a, t_counter *t,
 						t_config *c);
 void				print_bench(unsigned int in_dis, t_counter *t, t_config *c);
+t_node				*ft_stknew(int data);
+int					ft_stkadd_back(t_node **stk, t_node *nw);
 #endif

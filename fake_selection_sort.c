@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 00:52:47 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 02:12:31 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 16:44:42 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	find_min(t_node **b, size_t *i)
 
 void	fake_selection_sort(t_node **a, t_node **b, t_counter *t)
 {
-	size_t i;
-	size_t len_b;
+	size_t	i;
+	size_t	len_b;
 
 	while (*b)
 	{
