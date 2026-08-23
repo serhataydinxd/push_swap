@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 02:11:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 02:11:48 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 14:56:10 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_max_min(int result, const char a, int sign)
 	return (1);
 }
 
-void	free_failed_malloc(t_node *head)
+void	free_stack(t_node *head)
 {
 	t_node *temp;
 
@@ -34,5 +34,4 @@ void	free_failed_malloc(t_node *head)
 		free(head);
 		head = temp;
 	}
-	exit(1);
 }

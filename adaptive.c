@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 02:10:29 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 14:38:46 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,31 @@ static void	sort_three(t_node **a, t_counter *t)
 	}
 }
 
-void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
+static void	sort_shorts(int size, t_node **a, t_counter *t, t_config *c)
 {
-	if (!a || !*a || !(*a)->next)
-		return ;
-	if (in_dis < 2000 || in_dis == 2 || in_dis == 3)
+	if (size == 2 || size == 3)
 	{
 		c->a_strategy = SIMPLE;
-		if (in_dis == 2)
+		if (size == 2)
 			sort_two(a, t);
-		else if (in_dis == 3)
+		else if (size == 3)
 			sort_three(a, t);
-		else
-			selection_sort(a, t);
+	}
+}
+
+void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
+{
+	int	size;
+
+	if (!a || !*a || !(*a)->next)
+		return ;
+	size = ft_lstsize(*a);
+	if (size == 2 || size == 3)
+		sort_shorts(size, a, t, c);
+	else if (in_dis < 2000)
+	{
+		c->a_strategy = SIMPLE;
+		selection_sort(a, t);
 	}
 	else if (in_dis < 5000)
 	{

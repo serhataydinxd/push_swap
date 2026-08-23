@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 02:12:33 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 14:56:42 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static t_node	*make_link_list(char **argv)
 		{
 			temp = malloc(sizeof(t_node));
 			if (!temp)
-				free_failed_malloc(head);
-			set_data(temp, argv[i++]);
+				free_stack(head);
+			set_data(temp, argv[i]);
 			if (head == NULL)
 				head = temp;
 			else
@@ -77,6 +77,7 @@ static t_node	*make_link_list(char **argv)
 			temp->prev = end;
 			end = temp;
 		}
+		i++;
 	}
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 12:19:54 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 14:56:19 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_counter
 void				fake_selection_sort(t_node **a, t_node **b, t_counter *t);
 int					ft_atoi(const char *nptr);
 int					check_max_min(int result, const char a, int sign);
-void				free_failed_malloc(t_node *head);
+void				free_stack(t_node *head);
 t_node				*parser(char **argv, t_config *c);
 t_node				*ft_lstlast(t_node *stk);
 unsigned int		ft_lstsize(t_node *stk);

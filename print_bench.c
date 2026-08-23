@@ -6,18 +6,15 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 19:13:21 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 02:11:58 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 14:37:52 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-void	print_bench(unsigned int in_dis, t_counter *t, t_config *c)
+static void	print_strategy(t_config *c)
 {
-	(void)t;
-	(void)c;
-	ft_printf(2, "[bench] disorder: %u.%u%%\n", (in_dis / 100), (in_dis % 100));
 	if (c->st_set)
 	{
 		if (c->strategy == SIMPLE)
@@ -36,9 +33,25 @@ void	print_bench(unsigned int in_dis, t_counter *t, t_config *c)
 		else if (c->a_strategy == COMPLEX)
 			ft_printf(2, "[bench] strategy: Adaptive / O(n*log(n))\n");
 	}
-	ft_printf(2, "[bench] total_ops: %d\n", t->c_total);
-	ft_printf(2, "[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", t->c_sa,
-		t->c_sb, t->c_ss, t->c_pa, t->c_pb);
-	ft_printf(2, "[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
-		t->c_ra, t->c_rb, t->c_rr, t->c_rra, t->c_rrb, t->c_rrr);
+}
+
+void	print_bench(unsigned int in_dis, t_counter *t, t_config *c)
+{
+	unsigned int	first;
+	unsigned int	second;
+
+	first = in_dis / 100;
+	second = in_dis % 100;
+	ft_printf(2, "[bench] disorder: %u.", first);
+	if (second < 10)
+		ft_printf(2, "0");
+	ft_printf(2, "%u%%\n", second);
+	print_strategy(c);
+	ft_printf(2, "[bench] total_ops: %u\n", (unsigned int)t->c_total);
+	ft_printf(2, "[bench] sa: %u sb: %u ss: %u pa: %u pb: %u\n",
+		(unsigned int)t->c_sa, (unsigned int)t->c_sb, (unsigned int)t->c_ss,
+		(unsigned int)t->c_pa, (unsigned int)t->c_pb);
+	ft_printf(2, "[bench] ra: %u rb: %u rr: %u rra: %u rrb: %u rrr: %u\n",
+		(unsigned int)t->c_ra, (unsigned int)t->c_rb, (unsigned int)t->c_rr,
+		(unsigned int)t->c_rra, (unsigned int)t->c_rrb, (unsigned int)t->c_rrr);
 }

@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/22 11:26:24 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 14:43:32 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,15 @@ static void	execute(t_node **a, t_counter *t, t_config *c)
 int	main(int argc, char **argv)
 {
 	t_node		*a;
-	t_counter	*t;
-	t_config	*c;
+	t_counter	t;
+	t_config	c;
 	t_node		*temp;
 
 	(void)argc;
-	t = malloc(sizeof(t_counter));
-	if (!t)
-		return (1);
-	c = malloc(sizeof(t_config));
-	if (!c)
-		return (1);
-	init_counter(t);
-	init_config(c);
-	a = parser(argv, c);
-	execute(&a, t, c);
-	free(t);
-	free(c);
+	init_counter(&t);
+	init_config(&c);
+	a = parser(argv, &c);
+	execute(&a, &t, &c);
 	while (a)
 	{
 		temp = a;
