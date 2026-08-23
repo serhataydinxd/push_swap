@@ -3,9 +3,9 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 
-SRCS	= disorder.c parser.c main.c atoi.c selection_sort.c radix_sort.c \
-		  push.c rotate.c rrotate.c swap.c utils.c flag_parser.c adaptive.c \
-		  print_bench.c chunk_based.c 	fake_selection_sort.c
+SRCS	= adaptive.c atoi.c chunk_based.c disorder.c fake_selection_sort.c flag_parser.c \
+		  main.c parser.c parser_utils.c print_bench.c push.c radix_sort.c rotate.c \
+		  rrotate.c selection_sort.c swap.c utils.c
 OBJS	= $(SRCS:.c=.o)
 
 PRINTF_DIR  = ft_printf

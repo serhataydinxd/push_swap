@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 00:53:26 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 12:19:54 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,11 @@ typedef struct s_counter
 	size_t			c_rrr;
 	size_t			c_total;
 }					t_counter;
+
 void				fake_selection_sort(t_node **a, t_node **b, t_counter *t);
 int					ft_atoi(const char *nptr);
 int					check_max_min(int result, const char a, int sign);
 void				free_failed_malloc(t_node *head);
-int					check_any_duplicate(t_node *head);
-t_node				*make_link_list(char **argv);
 t_node				*parser(char **argv, t_config *c);
 t_node				*ft_lstlast(t_node *stk);
 unsigned int		ft_lstsize(t_node *stk);

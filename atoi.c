@@ -6,13 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 06:06:44 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 02:10:33 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 12:20:39 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	check_sign(char *nptr, size_t *i, int *sign)
+static void	check_sign(const char *nptr, size_t *i, int *sign)
 {
 	if (nptr[*i] == '-' || nptr[*i] == '+')
 	{
