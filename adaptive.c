@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 14:38:46 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 19:51:44 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,11 @@ static void	sort_three(t_node **a, t_counter *t)
 
 static void	sort_shorts(int size, t_node **a, t_counter *t, t_config *c)
 {
-	if (size == 2 || size == 3)
-	{
-		c->a_strategy = SIMPLE;
-		if (size == 2)
-			sort_two(a, t);
-		else if (size == 3)
-			sort_three(a, t);
-	}
+	c->a_strategy = SIMPLE;
+	if (size == 2)
+		sort_two(a, t);
+	else if (size == 3)
+		sort_three(a, t);
 }
 
 void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
@@ -66,7 +63,10 @@ void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
 	int	size;
 
 	if (!a || !*a || !(*a)->next)
+	{
+		c->a_strategy = SIMPLE;
 		return ;
+	}
 	size = ft_lstsize(*a);
 	if (size == 2 || size == 3)
 		sort_shorts(size, a, t, c);
