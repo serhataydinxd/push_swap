@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 14:56:19 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 16:10:47 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ typedef struct s_config
 	int				st_set;
 	int				bench_mode;
 }					t_config;
+typedef struct s_chunk
+{
+	int				*sorted_array;
+	int				total_numbers;
+	int				numbers_per_chunk;
+	int				chunk_min;
+	int				chunk_max;
+}					t_chunk;
+
 
 typedef struct s_counter
 {

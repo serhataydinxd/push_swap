@@ -6,108 +6,103 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 02:10:53 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/23 16:11:16 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	calculate_iteration_count(t_node **a)
+static int	calculate_iteration_count(t_node **a)
 {
-	size_t	i;
-	size_t	len_a;
+	int	i;
+	int	len_a;
 
 	len_a = ft_lstsize(*a);
 	i = 0;
 	while (1)
 	{
-		if (i * i >= len_a)
+		if (i * i >= len_a * 7)
 			return (i);
 		i++;
 	}
 }
 
-static void	change_a(t_node **a, t_node **b, size_t *count, t_counter *t)
+static void	build_sorted_array(t_node *a, int *sorted_array, int total_numbers)
 {
-	while (*count)
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	while (a && i < total_numbers)
 	{
-		pa(a, b, t);
-		ra(a, t);
-		(*count)--;
+		sorted_array[i] = a->data;
+		a = a->next;
+		i++;
+	}
+	i = 1;
+	while (i < total_numbers)
+	{
+		j = i;
+		while (j > 0 && sorted_array[j - 1] > sorted_array[j])
+		{
+			temp = sorted_array[j - 1];
+			sorted_array[j - 1] = sorted_array[j];
+			sorted_array[j] = temp;
+			j--;
+		}
+		i++;
 	}
 }
 
-static size_t	rotate_and_push(t_node **a, t_node **b, int end_limit, int min,
-		t_counter *t)
+static void	push_range(t_node **a, t_node **b, t_chunk *chunk, t_counter *t)
 {
-	size_t	count;
-	size_t	a_len;
-	size_t	processed_num_count;
+	int	len_a;
 
-	processed_num_count = 0;
-	a_len = ft_lstsize(*a);
-	count = 0;
-	while (a_len)
+	len_a = ft_lstsize(*a);
+	while (len_a)
 	{
-		if ((int)(*a)->data <= end_limit && (int)(*a)->data >= min)
-		{
+		if ((*a)->data >= chunk->chunk_min && (*a)->data <= chunk->chunk_max)
 			pb(a, b, t);
-			count++;
-			processed_num_count++;
-		}
 		else
 			ra(a, t);
-		a_len--;
+		len_a--;
 	}
-	fake_selection_sort(a, b, t);
-	change_a(a, b, &count, t);
-	return (processed_num_count);
 }
 
-static size_t	handle_b(t_node **a, t_node **b, size_t unprocessed_num,
-		size_t iteration_count_left, t_counter *t)
+static void	sort_chunks(t_node **a, t_node **b, t_chunk *chunk, t_counter *t)
 {
-	t_node	*temp;
-	int		min;
-	int		max;
-	int		end_limit;
+	int	i;
 
-	temp = *a;
-	min = temp->data;
-	max = temp->data;
-	while (temp && unprocessed_num)
+	i = 0;
+	while (i < chunk->total_numbers)
 	{
-		if ((int)temp->data > max)
-			max = temp->data;
-		if ((int)temp->data < min)
-			min = temp->data;
-		temp = temp->next;
-		unprocessed_num--;
+		chunk->chunk_min = chunk->sorted_array[i];
+		if (i + chunk->numbers_per_chunk - 1 >= chunk->total_numbers)
+			chunk->chunk_max = chunk->sorted_array[chunk->total_numbers - 1];
+		else
+			chunk->chunk_max = chunk->sorted_array[i + chunk->numbers_per_chunk
+				- 1];
+		push_range(a, b, chunk, t);
+		fake_selection_sort(a, b, t);
+		i += chunk->numbers_per_chunk;
 	}
-	end_limit = min + (max - min) / iteration_count_left;
-	return (rotate_and_push(a, b, end_limit, min, t));
 }
 
 void	chunk_based(t_node **a, t_counter *t)
 {
-	t_node	*b;
-	size_t	iteration_count;
-	size_t	i;
-	size_t	unprocessed_num_count;
-	size_t	iteration_count_left;
+	t_node *b;
+	t_chunk chunk;
 
 	if (is_sorted(*a))
 		return ;
-	i = 0;
-	unprocessed_num_count = ft_lstsize(*a);
+	chunk.total_numbers = ft_lstsize(*a);
+	chunk.numbers_per_chunk = calculate_iteration_count(a);
+	chunk.sorted_array = malloc(sizeof(int) * chunk.total_numbers);
+	if (!chunk.sorted_array)
+		return ;
+	build_sorted_array(*a, chunk.sorted_array, chunk.total_numbers);
 	b = NULL;
-	iteration_count = calculate_iteration_count(a);
-	while (iteration_count)
-	{
-		iteration_count_left = calculate_iteration_count(a) - i;
-		unprocessed_num_count = unprocessed_num_count - handle_b(a, &b,
-				unprocessed_num_count, iteration_count_left, t);
-		i++;
-		iteration_count--;
-	}
+	sort_chunks(a, &b, &chunk, t);
+	free(chunk.sorted_array);
 }
