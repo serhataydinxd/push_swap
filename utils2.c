@@ -6,7 +6,7 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 18:29:55 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 19:03:44 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 19:32:12 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,29 @@ void	free_stack(t_node *head)
 		temp = head->next;
 		free(head);
 		head = temp;
+	}
+}
+
+void	assign_index(t_node *a)
+{
+	t_node	*curr;
+	t_node	*comp;
+	int		index;
+
+	if (!a)
+		return ;
+	curr = a;
+	while (curr)
+	{
+		index = 0;
+		comp = a;
+		while (comp)
+		{
+			if (comp->data < curr->data)
+				index++;
+			comp = comp->next;
+		}
+		curr->index = index;
+		curr = curr->next;
 	}
 }

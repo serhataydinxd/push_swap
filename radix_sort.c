@@ -6,35 +6,11 @@
 /*   By: seraydin <seraydin@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 12:17:34 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/20 17:08:16 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 19:32:09 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	assign_index(t_node *a)
-{
-	t_node	*curr;
-	t_node	*comp;
-	int		index;
-
-	if (!a)
-		return ;
-	curr = a;
-	while (curr)
-	{
-		index = 0;
-		comp = a;
-		while (comp)
-		{
-			if (comp->data < curr->data)
-				index++;
-			comp = comp->next;
-		}
-		curr->index = index;
-		curr = curr->next;
-	}
-}
 
 static int	bit_size(t_node *a)
 {

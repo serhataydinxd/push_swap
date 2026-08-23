@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 19:00:33 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/23 19:32:03 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ void				adaptive(unsigned int in_dis, t_node **a, t_counter *t,
 void				print_bench(unsigned int in_dis, t_counter *t, t_config *c);
 t_node				*ft_stknew(int data);
 int					ft_stkadd_back(t_node **stk, t_node *nw);
+void				assign_index(t_node *a);
 #endif
