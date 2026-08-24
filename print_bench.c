@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 19:13:21 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/24 12:02:39 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:15:05 by ugpolat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ static void	print_strategy(t_config *c)
 		if (c->a_strategy == SIMPLE)
 			ft_printf(2, "[bench] strategy: Adaptive - Simple / O(n^2)\n");
 		else if (c->a_strategy == MEDIUM)
-			ft_printf(2, "[bench] strategy: Adaptive - Medium / O(n*sqrt(n))\n");
+			ft_printf(2, "[bench] strategy: Adaptive - Medium"
+				" / O(n*sqrt(n))\n");
 		else if (c->a_strategy == COMPLEX)
-			ft_printf(2, "[bench] strategy: Adaptive - Complex / O(n*log(n))\n");
+			ft_printf(2, "[bench] strategy: Adaptive - Complex"
+				" / O(n*log(n))\n");
 	}
 }
 
