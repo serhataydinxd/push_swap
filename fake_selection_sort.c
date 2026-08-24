@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 00:52:47 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/24 10:29:33 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/24 10:41:39 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	find_min(t_node **b, size_t *i)
 	t_node	*temp;
 
 	temp = *b;
-	min = (*b)->data;
+	min = (*b)->index;
 	while (temp)
 	{
 		if (min > temp->index)
@@ -26,7 +26,7 @@ static void	find_min(t_node **b, size_t *i)
 		temp = temp->next;
 	}
 	temp = *b;
-	while (temp->data != min)
+	while (temp->index != min)
 	{
 		(*i)++;
 		temp = temp->next;

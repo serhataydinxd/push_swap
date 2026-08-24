@@ -19,7 +19,7 @@ $(PRINTF):
 $(NAME): $(OBJS) $(PRINTF)
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) -o $(NAME)
 
-%.o: %.c
+%.o: %.c push_swap.h
 	$(CC) $(CFLAGS) -I$(PRINTF_DIR) -c $< -o $@
 
 clean:
