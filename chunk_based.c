@@ -6,13 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/24 11:36:52 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:17:39 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	calculate_iteration_count(t_node **a)
+static int	calculate_chunk_size(t_node **a)
 {
 	int	i;
 	int	len_a;
@@ -21,7 +21,7 @@ static int	calculate_iteration_count(t_node **a)
 	i = 0;
 	while (1)
 	{
-		if (i * i >= len_a * 7)
+		if (i * i >= len_a * 5)
 			return (i);
 		i++;
 	}
@@ -46,16 +46,16 @@ static void	sort_chunks(t_node **a, t_node **b, t_chunk *chunk, t_counter *t)
 {
 	int	i;
 
-	i = 0;
-	while (i < chunk->total_numbers)
+	i = chunk->total_numbers;
+	while (i > 0)
 	{
-		chunk->chunk_min = i;
-		chunk->chunk_max = i + chunk->numbers_per_chunk - 1;
-		if (chunk->chunk_max >= chunk->total_numbers)
-			chunk->chunk_max = chunk->total_numbers - 1;
+		chunk->chunk_max = i - 1;
+		chunk->chunk_min = i - chunk->numbers_per_chunk;
+		if (chunk->chunk_min < 0)
+			chunk->chunk_min = 0;
 		push_range(a, b, chunk, t);
 		fake_selection_sort(a, b, t);
-		i += chunk->numbers_per_chunk;
+		i = chunk->chunk_min;
 	}
 }
 
@@ -67,7 +67,7 @@ void	chunk_based(t_node **a, t_counter *t)
 	if (is_sorted(*a))
 		return ;
 	chunk.total_numbers = ft_lstsize(*a);
-	chunk.numbers_per_chunk = calculate_iteration_count(a);
+	chunk.numbers_per_chunk = calculate_chunk_size(a);
 	b = NULL;
 	sort_chunks(a, &b, &chunk, t);
 }

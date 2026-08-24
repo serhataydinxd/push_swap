@@ -6,27 +6,27 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 00:52:47 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/24 10:41:39 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:13:55 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	find_min(t_node **b, size_t *i)
+static void	find_max(t_node **b, size_t *i)
 {
-	int		min;
+	int		max;
 	t_node	*temp;
 
 	temp = *b;
-	min = (*b)->index;
+	max = (*b)->index;
 	while (temp)
 	{
-		if (min > temp->index)
-			min = temp->index;
+		if (max < temp->index)
+			max = temp->index;
 		temp = temp->next;
 	}
 	temp = *b;
-	while (temp->index != min)
+	while (temp->index != max)
 	{
 		(*i)++;
 		temp = temp->next;
@@ -42,7 +42,7 @@ void	fake_selection_sort(t_node **a, t_node **b, t_counter *t)
 	{
 		i = 0;
 		len_b = ft_lstsize(*b);
-		find_min(b, &i);
+		find_max(b, &i);
 		if (i > (len_b / 2))
 		{
 			i = len_b - i;
@@ -55,6 +55,5 @@ void	fake_selection_sort(t_node **a, t_node **b, t_counter *t)
 				rb(b, t);
 		}
 		pa(a, b, t);
-		ra(a, t);
 	}
 }

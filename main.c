@@ -6,12 +6,11 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 11:23:10 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 20:05:20 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:00:00 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
 static void	init_counter(t_counter *t)
 {
@@ -60,18 +59,12 @@ int	main(int argc, char **argv)
 	t_node		*a;
 	t_counter	t;
 	t_config	c;
-	t_node		*temp;
 
 	(void)argc;
 	init_counter(&t);
 	init_config(&c);
 	a = parser(argv, &c);
 	execute(&a, &t, &c);
-	while (a)
-	{
-		temp = a;
-		a = a->next;
-		free(temp);
-	}
+	free_stack(a);
 	return (0);
 }
