@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 16:33:48 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 15:50:36 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:57:24 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 unsigned int	calc_disorder(t_node **a)
 {
-	t_node	*one;
-	t_node	*two;
-	size_t	total_pairs;
-	size_t	mistakes;
-	size_t	scaled;
+	t_node			*one;
+	t_node			*two;
+	size_t			total_pairs;
+	size_t			mistakes;
+	unsigned int	scaled;
 
 	if (!a || !*a || !(*a)->next)
 		return (0);
@@ -38,5 +38,5 @@ unsigned int	calc_disorder(t_node **a)
 		one = one->next;
 	}
 	scaled = ((mistakes * 10000) / total_pairs);
-	return ((unsigned int) scaled);
+	return (scaled);
 }
