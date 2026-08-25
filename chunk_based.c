@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 02:47:31 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/24 13:17:39 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:32:54 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	calculate_chunk_size(t_node **a)
 	i = 0;
 	while (1)
 	{
-		if (i * i >= len_a * 5)
+		if (i * i >= len_a * 7)
 			return (i);
 		i++;
 	}

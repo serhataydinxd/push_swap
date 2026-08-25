@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 02:31:37 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/24 12:04:41 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:09:42 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,15 @@ static int	is_flag(char *str)
 static t_node	*make_link_list(char **argv)
 {
 	t_node	*head;
-	t_node	*temp;
-	size_t	i;
-	long	data;
+	size_t	a;
 
-	i = 1;
+	a = 1;
 	head = NULL;
-	while (argv[i])
+	while (argv[a])
 	{
-		if (!is_flag(argv[i]))
-		{
-			data = ft_atol(argv[i]);
-			if (data < -2147483648 || data > 2147483647)
-				throw_error(head);
-			temp = ft_stknew(data);
-			if (!temp)
-				throw_error(head);
-			if (!ft_stkadd_back(&head, temp))
-				throw_error(head);
-		}
-		i++;
+		if (!is_flag(argv[a]))
+			parse_argument(argv[a], &head);
+		a++;
 	}
 	return (head);
 }

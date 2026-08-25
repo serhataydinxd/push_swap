@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/23 19:51:44 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:12:19 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,23 @@ static void	sort_three(t_node **a, t_counter *t)
 	}
 }
 
+static void	sort_four_five(t_node **a, t_counter *t, int size)
+{
+	t_node	*b;
+	size_t	j;
+
+	b = NULL;
+	j = 1;
+	while (size-- > 3)
+	{
+		find_min(a, &j);
+		rotate_push(a, &b, (j - 1), t);
+	}
+	sort_three(a, t);
+	while (b)
+		pa(a, &b, t);
+}
+
 static void	sort_shorts(int size, t_node **a, t_counter *t, t_config *c)
 {
 	c->a_strategy = SIMPLE;
@@ -56,6 +73,8 @@ static void	sort_shorts(int size, t_node **a, t_counter *t, t_config *c)
 		sort_two(a, t);
 	else if (size == 3)
 		sort_three(a, t);
+	else
+		sort_four_five(a, t, size);
 }
 
 void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
@@ -68,7 +87,7 @@ void	adaptive(unsigned int in_dis, t_node **a, t_counter *t, t_config *c)
 		return ;
 	}
 	size = ft_lstsize(*a);
-	if (size == 2 || size == 3)
+	if (size >= 2 && size <= 5)
 		sort_shorts(size, a, t, c);
 	else if (in_dis < 2000)
 	{

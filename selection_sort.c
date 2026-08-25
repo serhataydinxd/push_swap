@@ -6,13 +6,13 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 07:30:03 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 02:09:51 by ugpolat          ###   ########.fr       */
+/*   Updated: 2026/08/25 10:57:21 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate_push(t_node **a, t_node **b, size_t i, t_counter *t)
+void	rotate_push(t_node **a, t_node **b, size_t i, t_counter *t)
 {
 	size_t	temp;
 
@@ -31,7 +31,7 @@ static void	rotate_push(t_node **a, t_node **b, size_t i, t_counter *t)
 	pb(a, b, t);
 }
 
-static void	find_min(t_node **a, size_t *j)
+void	find_min(t_node **a, size_t *j)
 {
 	t_node	*temp;
 	size_t	i;

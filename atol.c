@@ -6,45 +6,51 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 06:06:44 by ugpolat           #+#    #+#             */
-/*   Updated: 2026/08/23 19:52:38 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:22:11 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	check_sign(const char *nptr, size_t *i, int *sign)
+static int	is_space(char c)
 {
-	if (nptr[*i] == '-' || nptr[*i] == '+')
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
+
+static void	handle_digit(const char *str, size_t *b, int *sign)
+{
+	if (str[*b] == '-' || str[*b] == '+')
 	{
-		if (nptr[*i] == '-')
-			(*sign) *= -1;
-		(*i)++;
+		if (str[*b] == '-')
+			*sign = -1;
+		(*b)++;
 	}
 }
 
-long	ft_atol(const char *nptr)
+int	ft_atol(const char *str, size_t *b, int *value)
 {
-	size_t	i;
-	int		sign;
 	long	result;
+	int		sign;
 	int		has_digit;
 
 	result = 0;
-	i = 0;
 	sign = 1;
 	has_digit = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || (nptr[i] == ' '))
-		i++;
-	check_sign(nptr, &i, &sign);
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (is_space(str[*b]))
+		(*b)++;
+	if (!str[*b])
+		return (0);
+	handle_digit(str, b, &sign);
+	while (str[*b] >= '0' && str[*b] <= '9')
 	{
-		if (!check_max_min(result, nptr[i], sign))
-			return (2147483648);
+		if (!check_max_min(result, str[*b], sign))
+			return (-1);
+		result = result * 10 + (str[*b] - '0');
 		has_digit = 1;
-		result = (result * 10) + (nptr[i] - '0');
-		i++;
+		(*b)++;
 	}
-	if (nptr[i] || !has_digit)
-		return (2147483648);
-	return (result * sign);
+	if (!has_digit || (str[*b] && !is_space(str[*b])))
+		return (-1);
+	*value = (int)(result * sign);
+	return (1);
 }

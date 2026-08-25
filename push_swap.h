@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/24 11:32:34 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:09:44 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_counter
 }					t_counter;
 
 void				fake_selection_sort(t_node **a, t_node **b, t_counter *t);
-long				ft_atol(const char *nptr);
+int					ft_atol(const char *nptr, size_t *b, int *data);
 int					check_max_min(long result, const char a, int sign);
 void				free_stack(t_node *head);
 t_node				*parser(char **argv, t_config *c);
@@ -97,4 +97,7 @@ void				print_bench(unsigned int in_dis, t_counter *t, t_config *c);
 t_node				*ft_stknew(int data);
 int					ft_stkadd_back(t_node **stk, t_node *nw);
 void				assign_index(t_node *a);
+void				rotate_push(t_node **a, t_node **b, size_t i, t_counter *t);
+void				find_min(t_node **a, size_t *j);
+void				parse_argument(char *arg, t_node **head);
 #endif
