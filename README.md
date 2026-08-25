@@ -131,4 +131,4 @@ Both contributors reviewed the complete project and understand all implemented a
 - [Inversion counting](https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics))
 - [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation)
 
-AI tools were used for discussing algorithm design, identifying edge cases, debugging, test planning, reviewing subject compliance, and improving documentation. All resulting suggestions were reviewed, tested, and understood by the contributors.
+AI tools were used for discussing algorithm design, identifying edge cases, debugging, test planning, reviewing subject compliance, and improving documentation. All resulting suggestions were reviewed, tested, and understood by the contributors.,
