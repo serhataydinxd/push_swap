@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 20:01:02 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/25 12:09:44 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:50:13 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "ft_printf/ft_printf.h"
 # include <stdlib.h>
-# include <unistd.h>
 
 typedef struct s_node
 {

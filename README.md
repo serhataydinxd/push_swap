@@ -62,9 +62,13 @@ At most O(n) rotations are required for each of n elements, giving an O(n²) upp
 
 ### Medium — O(n√n)
 
-Values are normalized into indexes from `0` to `n - 1` and divided into chunks of approximately √n elements. Each chunk is pushed to B and returned to A in sorted index order.
+Values are normalized into indexes from `0` to `n - 1` and divided into chunks of approximately `√(5n)` elements.
 
-There are approximately √n chunks, and each element requires at most O(√n) operations while its chunk is processed. This gives an O(n√n) operation bound.
+Chunks are processed from the highest index range to the lowest. The elements belonging to the current range are pushed from stack A to stack B. The largest index in B is then brought to the top using the shortest rotation direction and pushed directly back to A.
+
+Extracting the largest values first constructs each chunk in ascending order. Because higher chunks are processed before lower chunks, every following chunk is placed above the previously sorted values. This removes the need to rotate A after every `pa`.
+
+There are O(√n) chunks. Locating and pushing each chunk requires a complete scan of stack A, producing O(n√n) operations in total. Sorting the elements inside the chunks also requires O(n√n) operations, so the complete strategy respects the O(n√n) operation bound.
 
 ### Complex — O(n log n)
 
@@ -76,15 +80,30 @@ There are O(log n) bits and every bit processes n elements, giving O(n log n) pu
 
 Before performing any operation, the program calculates disorder using the ratio of inverted pairs to all possible pairs.
 
-| Disorder | Selected strategy | Complexity |
-|---|---|---|
-| `< 0.2` | Simple | O(n²) |
-| `0.2 ≤ disorder < 0.5` | Medium | O(n√n) |
-| `≥ 0.5` | Complex | O(n log n) |
+Inputs containing two to five elements are handled by specialized small-stack sorting routines. For larger inputs, the strategy is selected according to the initial disorder:
 
-Low-disorder inputs use the simple baseline, medium-disorder inputs use chunk partitioning, and highly disordered inputs use radix sort for its predictable upper bound.
+| Condition | Selected strategy | Complexity |
+|---|---|---|
+| `2-5 elements` | Specialized Sort | O(1) |
+| `disorder < 0.2` | Simple | O(n²) |
+| `0.2 ≤ disorder < 0.5` | Medium | O(n√n) |
+| `disorder ≥ 0.5` | Complex | O(n log n) |
+
+Low-disorder inputs use selection-based sorting, medium-disorder inputs use chunk partitioning, and highly disordered inputs use binary radix sort.
 
 The stacks require O(n) memory. Indexes and counters use constant additional memory per node.
+
+## Quoted-input documentation
+
+Since quoted arguments are now supported, you can add this under Instructions:
+
+Numbers can be supplied separately or as whitespace-separated quoted arguments:
+
+```sh
+./push_swap 4 67 3 87 23
+./push_swap "4 67 3 87 23"
+./push_swap --medium "4 67 3 87 23"
+```
 
 ## Benchmark Mode
 

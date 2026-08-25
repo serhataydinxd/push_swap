@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/25 12:12:19 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:39:49 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	sort_two(t_node **a, t_counter *t)
 {
 	if (!is_sorted(*a))
 		ra(a, t);
-	if (is_sorted(*a))
-		return ;
+	return ;
 }
 
 static void	sort_three(t_node **a, t_counter *t)

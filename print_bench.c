@@ -6,11 +6,10 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 19:13:21 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/24 13:20:18 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/25 12:50:11 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
 static void	print_strategy(t_config *c)
