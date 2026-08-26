@@ -6,7 +6,7 @@
 /*   By: ugpolat@student.42istanbul.com.tr          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 18:51:08 by seraydin          #+#    #+#             */
-/*   Updated: 2026/08/25 12:39:49 by seraydin         ###   ########.fr       */
+/*   Updated: 2026/08/26 11:13:56 by seraydin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	sort_four_five(t_node **a, t_counter *t, int size)
 	t_node	*b;
 	size_t	j;
 
+	if (is_sorted(*a))
+		return ;
 	b = NULL;
 	j = 1;
 	while (size-- > 3)
